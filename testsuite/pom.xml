@@ -152,6 +152,11 @@
         <!-- Don't try to deploy the testsuite modules because they don't build jars -->
         <maven.deploy.skip>true</maven.deploy.skip>
 
+        <!-- Skip enforcer plugin dependency convergence rule for testsuite.
+             This is due maven version suffix extension not understanding undeployed poms 
+          -->
+        <enforcer.skip>true</enforcer.skip>
+
         <!-- used to enable trace logging for test suite runs -->
         <trace>none</trace>
 
