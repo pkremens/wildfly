@@ -57,7 +57,7 @@
     </dependencies>
 
     <build>
-        <finalName>${server.output.dir.prefix}-servlet-${project.version}</finalName>
+        <finalName>${server.output.dir.prefix}-servlet-${jboss.eap.release.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.build</groupId>
@@ -90,7 +90,7 @@
                                 <descriptor>assembly.xml</descriptor>
                             </descriptors>
                             <recompressZippedFiles>true</recompressZippedFiles>
-                            <finalName>${server.output.dir.prefix}-web-${project.version}</finalName>
+                            <finalName>${server.output.dir.prefix}-web-${jboss.eap.release.version}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <workDirectory>${project.build.directory}/assembly/work</workDirectory>
