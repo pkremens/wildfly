@@ -32,7 +32,7 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>target/${server.output.dir.prefix}-servlet-${project.version}</directory>
+            <directory>target/${server.output.dir.prefix}-servlet-${jboss.eap.release.version}</directory>
             <outputDirectory/>
         </fileSet>
     </fileSets>
