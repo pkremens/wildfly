@@ -55,6 +55,7 @@
     <properties>
         <!-- Release Info -->
         <jboss.as.release.version>${project.version}</jboss.as.release.version>
+        <jboss.eap.release.version>7.0</jboss.eap.release.version>
         <jboss.as.release.codename>Kenny</jboss.as.release.codename>
         <jboss.as.scm.url>https://github.com/wildfly/wildfly</jboss.as.scm.url>
         <jboss.as.scm.connection>git@github.com:wildfly/wildfly.git</jboss.as.scm.connection>
@@ -245,7 +246,7 @@
         <linkXRef>false</linkXRef>
 
         <server.output.dir.prefix>jboss-eap</server.output.dir.prefix>
-        <wildfly.build.output.dir>dist/target/${server.output.dir.prefix}-${jboss.as.release.version}</wildfly.build.output.dir>
+        <wildfly.build.output.dir>dist/target/${server.output.dir.prefix}-${jboss.eap.release.version}</wildfly.build.output.dir>
         <wildfly.web.build.output.dir>servlet-dist/target/${server.output.dir.prefix}-servlet-${jboss.as.release.version}</wildfly.web.build.output.dir>
 
         <!--
