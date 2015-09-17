@@ -25,6 +25,10 @@
             <contents>
                 <filter pattern="copyright.txt" include="false"/>
                 <filter pattern="README.txt" include="false"/>
+                <filter pattern="bin/domain.ps1" include="false"/>
+                <filter pattern="bin/jboss-cli.ps1" include="false"/>
+                <filter pattern="bin/standalone.conf.ps1" include="false"/>
+                <filter pattern="bin/standalone.ps1" include="false"/>
             </contents>
         </feature-pack>
     </feature-packs>
