@@ -29,6 +29,9 @@
                 <filter pattern="bin/jboss-cli.ps1" include="false"/>
                 <filter pattern="bin/standalone.conf.ps1" include="false"/>
                 <filter pattern="bin/standalone.ps1" include="false"/>
+                <filter pattern="bin/init.d/wildfly.conf" include="false"/>
+                <filter pattern="bin/init.d/wildfly-init-debian.sh" include="false"/>
+                <filter pattern="bin/init.d/wildfly-init-redhat.sh" include="false"/>
             </contents>
         </feature-pack>
     </feature-packs>
