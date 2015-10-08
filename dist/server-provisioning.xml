@@ -25,6 +25,9 @@
             <contents>
                 <filter pattern="copyright.txt" include="false"/>
                 <filter pattern="README.txt" include="false"/>
+                <filter pattern="bin/init.d/wildfly.conf" include="false"/>
+                <filter pattern="bin/init.d/wildfly-init-debian.sh" include="false"/>
+                <filter pattern="bin/init.d/wildfly-init-redhat.sh" include="false"/>
             </contents>
         </feature-pack>
     </feature-packs>
