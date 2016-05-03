@@ -54,7 +54,7 @@ public class CoarseWebFailoverTestCase extends ClusteredWebFailoverAbstractCase 
         war.addClasses(SimpleServlet.class, Mutable.class);
         ClusterTestUtil.addTopologyListenerDependencies(war);
         // Take web.xml from the managed test.
-        war.setWebXML(ClusteredWebSimpleTestCase.class.getPackage(), "web.xml");
+        war.setWebXML(AClusteredWebSimpleTestCase.class.getPackage(), "web.xml");
         return war;
     }
 }
