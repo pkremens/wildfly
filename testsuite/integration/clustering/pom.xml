@@ -90,7 +90,7 @@
                                 <configuration>
                                     <!-- Tests to execute. -->
                                     <includes>
-                                        <include>org/jboss/as/test/clustering/cluster/**/*TestCase.java</include>
+                                        <include>org/jboss/as/test/clustering/cluster/web/TestSuite.java</include>
                                     </includes>
 
                                     <!-- Parameters to test cases. -->
