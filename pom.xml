@@ -243,7 +243,7 @@
         <!-- Checkstyle configuration -->
         <linkXRef>false</linkXRef>
 
-        <server.output.dir.prefix>wildfly</server.output.dir.prefix>
+        <server.output.dir.prefix>jboss-eap</server.output.dir.prefix>
         <wildfly.build.output.dir>dist/target/${server.output.dir.prefix}-${jboss.as.release.version}</wildfly.build.output.dir>
         <wildfly.web.build.output.dir>servlet-dist/target/${server.output.dir.prefix}-servlet-${jboss.as.release.version}</wildfly.web.build.output.dir>
 
