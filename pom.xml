@@ -341,19 +341,22 @@
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
             <plugin>
-        <groupId>org.commonjava.maven.plugins</groupId>
-        <artifactId>project-sources-maven-plugin</artifactId>
-        <version>0.3</version>
-        <executions>
-          <execution>
-            <id>project-sources-archive</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>archive</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+              <groupId>org.commonjava.maven.plugins</groupId>
+              <artifactId>project-sources-maven-plugin</artifactId>
+              <version>1.0</version>
+              <executions>
+                <execution>
+                  <id>project-sources-archive</id>
+                  <phase>initialize</phase>
+                  <goals>
+                    <goal>archive</goal>
+                   </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <assemblyRootFolder>jboss-eap-${jboss.eap.release.version}</assemblyRootFolder>
+              </configuration>
+            </plugin>
             <plugin>
         <groupId>com.redhat.rcm.maven.plugin</groupId>
         <artifactId>buildmetadata-maven-plugin</artifactId>
