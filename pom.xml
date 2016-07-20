@@ -103,7 +103,7 @@
         <version.gnu.getopt>1.0.13.redhat-5</version.gnu.getopt>
         <version.groovy-all>2.4.3</version.groovy-all>
         <version.httpunit>1.7</version.httpunit>
-        <version.io.netty>4.0.33.Final</version.io.netty>
+        <version.io.netty>4.0.33.Final-redhat-2</version.io.netty>
         <version.io.undertow.jastow>2.0.1.Final</version.io.undertow.jastow>
         <version.io.undertow.js>1.0.2.Final-redhat-1</version.io.undertow.js>
         <version.javax.activation>1.1.1.redhat-5</version.javax.activation>
