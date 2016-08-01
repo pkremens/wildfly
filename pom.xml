@@ -262,7 +262,7 @@
         <org.jboss.model.test.cache.root>[pom.xml,testsuite]</org.jboss.model.test.cache.root>
         <!-- Location relative to root that will be used for the cached legacy classpaths used by subsystem-test and core-model-test-->
         <org.jboss.model.test.classpath.cache>target/model-test-classpath-cache</org.jboss.model.test.classpath.cache>
-        <org.jboss.model.test.maven.repository.urls>http://download.eng.bos.redhat.com/brewroot/repos/jb-eap-7.1-rhel-7-maven-build/latest/maven/,https://maven.repository.redhat.com/ga/,http://repository.jboss.org/nexus/content/groups/developer/</org.jboss.model.test.maven.repository.urls>
+        <org.jboss.model.test.maven.repository.urls>http://download.devel.redhat.com/brewroot/repos/jb-eap-7.1-rhel-7-maven-build/latest/maven/,https://maven.repository.redhat.com/ga/,http://repository.jboss.org/nexus/content/groups/developer/</org.jboss.model.test.maven.repository.urls>
         <version.com.github.spullara.mustache>0.9.4.redhat-1</version.com.github.spullara.mustache>
     </properties>
 
