@@ -51,6 +51,18 @@ Contributing
 ------------------
 https://developer.jboss.org/wiki/HackingOnWildFly
 
+Build vs. Dist directories
+--------------------------
+
+After running `mvn install`, JBoss EAP 7 will be available in two distinct directories, `build` and `dist`.
+
+* The `build` directory contains a build of JBoss EAP 7 that is based on Maven artifact resolution for module configuration
+* The `dist` directory, on the other hand, contains a full distributable build of JBoss EAP 7
+
+Using the `build` directory makes iterating with subsystem or module development easier since there is no need to rebuild the whole of JBoss EAP 7 or copy JAR files around on every change.
+
+The `dist` directory is better suited when a full build of JBoss EAP 7 is needed for development or test purposes.
+
 Running the Testsuite
 --------------------
 The testsuite module contains several submodules including the following:
