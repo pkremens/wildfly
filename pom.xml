@@ -2206,6 +2206,26 @@
 
             <dependency>
                 <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-features-clustering</artifactId>
+                <version>${version.org.apache.cxf}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.osgi</groupId>
+                        <artifactId>org.osgi.core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-rt-frontend-jaxws</artifactId>
                 <version>${version.org.apache.cxf}</version>
                 <exclusions>
