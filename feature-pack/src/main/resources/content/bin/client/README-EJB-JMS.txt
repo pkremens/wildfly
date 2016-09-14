@@ -26,6 +26,7 @@ org.jboss.sasl:jboss-sasl
 org.jboss.xnio:xnio-api
 org.jboss.xnio:xnio-nio
 org.jgroups:jgroups
+org.slf4j:slf4j-api
 org.slf4j:jcl-over-slf4j
 
 Maven users should not use this jar, but should use the following BOM dependencies instead
