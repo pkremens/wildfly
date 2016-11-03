@@ -52,6 +52,7 @@ import org.jboss.dmr.ModelNode;
 import org.jboss.dmr.ModelType;
 import org.jboss.msc.service.ServiceTarget;
 import org.wildfly.extension.batch.jberet._private.Capabilities;
+import org.wildfly.extension.batch.jberet.deployment.BatchCleanupProcessor;
 import org.wildfly.extension.batch.jberet.deployment.BatchDependencyProcessor;
 import org.wildfly.extension.batch.jberet.deployment.BatchDeploymentDescriptorParser_1_0;
 import org.wildfly.extension.batch.jberet.deployment.BatchDeploymentResourceProcessor;
@@ -179,6 +180,8 @@ public class BatchSubsystemDefinition extends SimpleResourceDefinition {
                             Phase.POST_MODULE, Phase.POST_MODULE_BATCH_ENVIRONMENT, new BatchEnvironmentProcessor(rcPresent));
                     processorTarget.addDeploymentProcessor(NAME,
                             Phase.INSTALL, Phase.INSTALL_BATCH_RESOURCES, new BatchDeploymentResourceProcessor(NAME));
+                    processorTarget.addDeploymentProcessor(NAME,
+                            Phase.CLEANUP, Phase.CLEANUP_BATCH, new BatchCleanupProcessor());
 
                 }
             }, OperationContext.Stage.RUNTIME);
