@@ -24,7 +24,6 @@ package org.jboss.as.ejb3.remote.protocol.versionone;
 
 import com.arjuna.ats.internal.jta.transaction.arjunacore.jca.SubordinateTransaction;
 import com.arjuna.ats.internal.jta.transaction.arjunacore.jca.SubordinationManager;
-import org.jboss.as.ejb3.logging.EjbLogger;
 import org.jboss.as.ejb3.remote.EJBRemoteTransactionsRepository;
 import org.jboss.ejb.client.XidTransactionID;
 import org.jboss.marshalling.MarshallerFactory;
@@ -50,18 +49,15 @@ class XidTransactionRollbackTask extends XidTransactionManagementTask {
 
     @Override
     protected void manageTransaction() throws Throwable {
-        final Transaction transaction = this.transactionsRepository.getImportedTransaction(this.xidTransactionID);
+        Transaction transaction = this.transactionsRepository.getImportedTransaction(this.xidTransactionID);
         if(transaction == null) {
             // check the recovery store - it's possible that the "rollback" is coming in as part of recovery operation and the subordinate
             // tx may not yet be in memory, but might be in the recovery store
-            final Transaction recoveredTransaction = tryRecoveryForImportedTransaction();
+            transaction = tryRecoveryForImportedTransaction();
             // still not found, so just return
-            if (recoveredTransaction == null) {
-                if(EjbLogger.EJB3_INVOCATION_LOGGER.isDebugEnabled()) {
-                    EjbLogger.EJB3_INVOCATION_LOGGER.debug("Not rolling back " + this.xidTransactionID + " as is was not found on the server");
-                }
+            if (transaction == null) {
+                transaction = this.transactionsRepository.importRemoteTransaction(this.xidTransactionID, 86400000);
             }
-            return;
         }
         this.resumeTransaction(transaction);
         // now rollback

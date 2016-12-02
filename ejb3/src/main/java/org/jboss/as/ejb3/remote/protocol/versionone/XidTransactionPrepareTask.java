@@ -23,19 +23,18 @@
 package org.jboss.as.ejb3.remote.protocol.versionone;
 
 import com.arjuna.ats.arjuna.coordinator.TwoPhaseOutcome;
-import com.arjuna.ats.internal.jta.transaction.arjunacore.jca.SubordinateTransaction;
 import com.arjuna.ats.internal.jta.transaction.arjunacore.jca.SubordinationManager;
 import org.jboss.as.ejb3.logging.EjbLogger;
 import org.jboss.as.ejb3.remote.EJBRemoteTransactionsRepository;
 import org.jboss.ejb.client.XidTransactionID;
 import org.jboss.marshalling.MarshallerFactory;
+import org.jboss.tm.ImportedTransaction;
 import org.xnio.IoUtils;
 
 import javax.transaction.HeuristicCommitException;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.SystemException;
-import javax.transaction.Transaction;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import java.io.IOException;
@@ -86,18 +85,15 @@ class XidTransactionPrepareTask extends XidTransactionManagementTask {
 
 
     private int prepareTransaction() throws Throwable {
-        final SubordinateTransaction subordinateTransaction = this.transactionsRepository.getImportedTransaction(this.xidTransactionID);
+        ImportedTransaction subordinateTransaction = this.transactionsRepository.getImportedTransaction(this.xidTransactionID);
         if (subordinateTransaction == null) {
             // check the recovery store - it's possible that the "prepare" is coming in as part of recovery operation and the subordinate
             // tx may not yet be in memory, but might be in the recovery store
-            final Transaction recoveredTransaction = tryRecoveryForImportedTransaction();
-            // still not found, so just return
-            if (recoveredTransaction == null) {
-                if (EjbLogger.EJB3_INVOCATION_LOGGER.isDebugEnabled()) {
-                    EjbLogger.EJB3_INVOCATION_LOGGER.debug("Not preparing " + this.xidTransactionID + " as is was not found on the server");
-                }
+            subordinateTransaction = tryRecoveryForImportedTransaction();
+            // still not found
+            if (subordinateTransaction == null) {
+                subordinateTransaction = this.transactionsRepository.importRemoteTransaction(this.xidTransactionID, 86400000);
             }
-            return XAResource.XA_OK;
         }
         // first associate the tx on this thread, by resuming the tx
         this.resumeTransaction(subordinateTransaction);
