@@ -56,6 +56,7 @@ public class RouteCacheGroupBuilderProvider implements CacheGroupBuilderProvider
             builders.add(new TemplateConfigurationBuilder(containerName, CACHE_NAME, cacheName, builder -> {
                 CacheMode mode = builder.clustering().cacheMode();
                 builder.clustering().cacheMode(mode.isClustered() ? CacheMode.REPL_SYNC : CacheMode.LOCAL);
+                builder.clustering().l1().disable();
                 builder.persistence().clearStores();
             }));
             builders.add(new CacheBuilder<>(containerName, CACHE_NAME));

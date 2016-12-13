@@ -55,6 +55,7 @@ public class ClientMappingsCacheBuilderProvider implements CacheGroupBuilderProv
             builders.add(new TemplateConfigurationBuilder(containerName, BeanManagerFactoryBuilderConfiguration.CLIENT_MAPPINGS_CACHE_NAME, cacheName, builder -> {
                 CacheMode mode = builder.clustering().cacheMode();
                 builder.clustering().cacheMode(mode.isClustered() ? CacheMode.REPL_SYNC : CacheMode.LOCAL);
+                builder.clustering().l1().disable();
                 builder.persistence().clearStores();
             }));
             builders.add(new CacheBuilder<>(containerName, BeanManagerFactoryBuilderConfiguration.CLIENT_MAPPINGS_CACHE_NAME));
