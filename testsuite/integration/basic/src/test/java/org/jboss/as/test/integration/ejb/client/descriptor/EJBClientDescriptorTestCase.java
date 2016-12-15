@@ -187,7 +187,7 @@ public class EJBClientDescriptorTestCase {
             try {
                 remoteEcho.echo(MODULE_NAME_TWO, msg);
                 Assert.fail("Exepcted to fail due to no EJB receivers availability");
-            } catch (EJBException e) {
+            } catch (Exception e) {
                 // no EJB receivers available, so expected to fail
                 logger.info("Received the expected exception during testing with no EJB receivers", e);
                 // TODO: We could even narrow down into the exception to ensure we got the right exception.
