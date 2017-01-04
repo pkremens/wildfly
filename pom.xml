@@ -220,7 +220,7 @@
         <version.org.wildfly.core>3.0.0.Alpha17-redhat-1</version.org.wildfly.core>
         <version.org.wildfly.arquillian>2.1.0.Alpha1</version.org.wildfly.arquillian>
         <version.org.wildfly.naming-client>1.0.0.Beta6-redhat-1</version.org.wildfly.naming-client>
-        <version.org.wildfly.security.elytron-subsystem>1.0.0.Alpha18</version.org.wildfly.security.elytron-subsystem>
+        <version.org.wildfly.security.elytron-subsystem>1.0.0.Alpha18-redhat-1</version.org.wildfly.security.elytron-subsystem>
         <version.org.yaml.snakeyaml>1.15.0.redhat-1</version.org.yaml.snakeyaml>
         <version.sun.jaxb>2.2.11.redhat-4</version.sun.jaxb>
         <version.sun.saaj-impl>1.3.16.SP1-redhat-6</version.sun.saaj-impl>
