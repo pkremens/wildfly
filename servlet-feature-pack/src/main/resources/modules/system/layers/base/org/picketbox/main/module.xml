@@ -48,5 +48,11 @@
         <module name="org.infinispan"  optional="true"/>
         <module name="org.jboss.security.xacml"  optional="true"/>
         <module name="org.jboss.modules" optional="true"/>
+        <!--
+             This module is used to provide the audit provider specific classes
+             containing the Audit implementation (and any of their dependencies)
+             used by Picketbox
+        --> 
+        <module name="org.picketbox.audit.provider" slot="main" optional="true"/>
     </dependencies>
 </module>
