@@ -31,7 +31,7 @@ vi:ts=4:sw=4:expandtab
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
-        <version>7.0.5.GA-redhat-SNAPSHOT</version>
+        <version>7.0.5.GA-redhat-2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

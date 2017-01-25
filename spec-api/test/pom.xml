@@ -28,7 +28,7 @@
   <parent>
     <groupId>org.jboss.eap</groupId>
     <artifactId>wildfly-spec-api</artifactId>
-    <version>7.0.5.GA-redhat-SNAPSHOT</version>
+    <version>7.0.5.GA-redhat-2</version>
   </parent>
 
   <artifactId>wildfly-spec-api-test</artifactId>
