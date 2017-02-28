@@ -157,7 +157,7 @@
         <version.org.jboss.activemq.artemis.integration>1.0.2.redhat-1</version.org.jboss.activemq.artemis.integration>
         <version.org.jboss.common.jboss-common-beans>2.0.0.Final-redhat-1</version.org.jboss.common.jboss-common-beans>
         <version.org.jboss.hal.release-stream>2.9.3.Final-redhat-1</version.org.jboss.hal.release-stream>
-        <version.org.jboss.ejb-client>4.0.0.Beta16</version.org.jboss.ejb-client>
+        <version.org.jboss.ejb-client>4.0.0.Beta16-redhat-1</version.org.jboss.ejb-client>
         <version.org.jboss.ejb3.ext-api>2.2.0.Final-redhat-1</version.org.jboss.ejb3.ext-api>
         <version.org.jboss.genericjms>2.0.0.Alpha2-redhat-1</version.org.jboss.genericjms>
         <version.org.jboss.iiop-client>1.0.0.Final-redhat-4</version.org.jboss.iiop-client>
@@ -220,9 +220,9 @@
         <version.org.wildfly.plugin>1.2.0.Alpha2</version.org.wildfly.plugin>
         <version.org.wildfly.arquillian>2.1.0.Alpha1</version.org.wildfly.arquillian>
         <version.org.wildfly.http-client>1.0.0.Alpha2</version.org.wildfly.http-client>
-        <version.org.wildfly.naming-client>1.0.0.Beta11</version.org.wildfly.naming-client>
-        <version.org.wildfly.security.elytron-subsystem>1.0.0.Beta10</version.org.wildfly.security.elytron-subsystem>
-        <version.org.wildfly.transaction.client>1.0.0.Beta17</version.org.wildfly.transaction.client>
+        <version.org.wildfly.naming-client>1.0.0.Beta11-redhat-1</version.org.wildfly.naming-client>
+        <version.org.wildfly.security.elytron-subsystem>1.0.0.Beta10-redhat-1</version.org.wildfly.security.elytron-subsystem>
+        <version.org.wildfly.transaction.client>1.0.0.Beta17-redhat-1</version.org.wildfly.transaction.client>
         <version.org.yaml.snakeyaml>1.17.0.redhat-1</version.org.yaml.snakeyaml>
         <version.sun.jaxb>2.2.11.redhat-4</version.sun.jaxb>
         <version.sun.saaj-impl>1.3.16.SP1-redhat-6</version.sun.saaj-impl>
