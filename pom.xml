@@ -6067,20 +6067,7 @@
     </dependencyManagement>
 
     <repositories>
-        <repository>
-            <id>central</id>
-            <name>Main Apache Maven Repository</name>
-            <url>http://central.maven.org/maven2/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
+        <!-- keep this repository the first -->
         <repository>
             <id>jboss-product-repository</id>
             <name>JBoss Product Repository</name>
@@ -6106,6 +6093,20 @@
             </releases>
             <snapshots>
                 <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Main Apache Maven Repository</name>
+            <url>http://central.maven.org/maven2/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
@@ -6113,20 +6114,6 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <id>central</id>
-            <name>Main Apache Maven Repository</name>
-            <url>http://central.maven.org/maven2/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
             <id>jboss-product-repository</id>
             <name>JBoss Product Repository</name>
             <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-eap-7.0-rhel-7-maven-build/latest/maven/</url>
@@ -6149,6 +6136,20 @@
             </releases>
             <snapshots>
                 <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>central</id>
+            <name>Main Apache Maven Repository</name>
+            <url>http://central.maven.org/maven2/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
