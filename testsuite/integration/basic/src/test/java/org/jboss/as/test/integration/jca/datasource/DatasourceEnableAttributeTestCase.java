@@ -57,7 +57,6 @@ public class DatasourceEnableAttributeTestCase extends DatasourceEnableAttribute
         }
         executeOperation(operation);
 
-        reload();
         return address;
     }
 
