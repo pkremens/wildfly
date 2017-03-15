@@ -26,6 +26,8 @@ import java.util.List;
 
 import org.jboss.as.connector.subsystems.datasources.DataSourcesExtension.DataSourceSubsystemParser;
 import org.jboss.as.connector.subsystems.datasources.Namespace;
+import org.jboss.as.controller.client.helpers.Operations;
+import org.jboss.as.controller.descriptions.ModelDescriptionConstants;
 import org.jboss.as.test.integration.management.base.ContainerResourceMgmtTestBase;
 import org.jboss.as.test.shared.ServerReload;
 import org.jboss.dmr.ModelNode;
@@ -58,8 +60,9 @@ public class DsMgmtTestBase extends ContainerResourceMgmtTestBase {
 
     //@After - called after each test
     protected void removeDs() throws Exception {
-        remove(baseAddress);
-        reload();
+        final ModelNode removeOperation = Operations.createRemoveOperation(baseAddress);
+        removeOperation.get(ModelDescriptionConstants.OPERATION_HEADERS).get("allow-resource-service-restart").set(true);
+        executeOperation(removeOperation);
     }
 
 

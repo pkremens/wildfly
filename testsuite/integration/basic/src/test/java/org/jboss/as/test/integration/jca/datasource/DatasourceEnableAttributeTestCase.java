@@ -26,6 +26,8 @@ import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.SUB
 
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.as.controller.client.helpers.Operations;
+import org.jboss.as.controller.descriptions.ModelDescriptionConstants;
 import org.jboss.dmr.ModelNode;
 import org.jboss.logging.Logger;
 import org.junit.Test;
@@ -68,8 +70,9 @@ public class DatasourceEnableAttributeTestCase extends DatasourceEnableAttribute
 
         ModelNode address = getDataSourceAddress(datasource);
         try {
-            remove(address);
-            reload();
+            final ModelNode removeOperation = Operations.createRemoveOperation(address);
+            removeOperation.get(ModelDescriptionConstants.OPERATION_HEADERS).get("allow-resource-service-restart").set(true);
+            executeOperation(removeOperation);
         } catch (Exception e) {
             log.debugf(e, "Can't remove datasource at address '%s'", address);
         }
