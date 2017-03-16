@@ -76,9 +76,7 @@ public class DatasourceXaEnableAttributeTestCase extends DatasourceEnableAttribu
         ModelNode address = getDataSourceAddress(datasource);
         try {
             final ModelNode removeOperation = Operations.createRemoveOperation(address);
-            // @TODO msimka - bez tohodle je to reload-required
             removeOperation.get(ModelDescriptionConstants.OPERATION_HEADERS).get("allow-resource-service-restart").set(true);
-//            reload();
             executeOperation(removeOperation);
         } catch (Exception e) {
             e.printStackTrace();
