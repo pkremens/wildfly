@@ -178,13 +178,13 @@ public abstract class DatasourceEnableAttributeTestBase extends DsMgmtTestBase {
             createDataSource(ds);
             testConnection(ds);
         } finally {
+            removeDataSourceSilently(ds);
             removeSystemPropertySilently(url);
             removeSystemPropertySilently(username);
             removeSystemPropertySilently(password);
             removeSystemPropertySilently(jndiName);
             removeSystemPropertySilently(driverName);
             removeSystemPropertySilently(DS_ENABLED_SYSTEM_PROPERTY_NAME);
-            removeDataSourceSilently(ds);
         }
     }
 
