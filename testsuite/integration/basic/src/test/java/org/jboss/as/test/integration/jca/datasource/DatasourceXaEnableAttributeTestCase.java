@@ -81,6 +81,7 @@ public class DatasourceXaEnableAttributeTestCase extends DatasourceEnableAttribu
 //            reload();
             executeOperation(removeOperation);
         } catch (Exception e) {
+            e.printStackTrace();
             log.debugf(e, "Can't remove xa datasource at address '%s'", address);
         }
     }
