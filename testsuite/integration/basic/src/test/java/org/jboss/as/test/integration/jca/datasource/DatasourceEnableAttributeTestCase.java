@@ -104,7 +104,6 @@ public class DatasourceEnableAttributeTestCase extends DatasourceEnableAttribute
             createDataSource(ds);
             addDataSourceConnectionProps(ds);
             enableDatasource(ds);
-            reload();
             testConnection(ds);
         } finally {
             removeDataSourceSilently(ds);
@@ -129,10 +128,16 @@ public class DatasourceEnableAttributeTestCase extends DatasourceEnableAttribute
         ModelNode address = new ModelNode()
             .add(SUBSYSTEM, "datasources")
             .add("data-source", ds.getName());
+
         ModelNode operation = new ModelNode();
-        operation.get(OP).set(ENABLE);
+        operation.get(OP).set(WRITE_ATTRIBUTE_OPERATION);
+        operation.get(NAME).set(ENABLED);
+        operation.get(VALUE).set(true);
         operation.get(OP_ADDR).set(address);
+
         executeOperation(operation);
+        // enabling datasource requires reload
+        reload();
     }
 
 }
