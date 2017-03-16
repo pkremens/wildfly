@@ -35,7 +35,11 @@ import org.jboss.as.test.integration.management.util.MgmtOperationException;
 import org.jboss.dmr.ModelNode;
 import org.jboss.logging.Logger;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 /**
  * A basic testing of setting/unsetting "enable" attribute of datasource.
@@ -46,6 +50,21 @@ public abstract class DatasourceEnableAttributeTestBase extends DsMgmtTestBase {
     private static final Logger log = Logger.getLogger(DatasourceEnableAttributeTestBase.class);
 
     private static final String DS_ENABLED_SYSTEM_PROPERTY_NAME = "ds.enabled";
+
+    @Rule
+    public TestRule watcher = new TestWatcher() {
+        protected void starting(Description description) {
+            System.out.println();
+            System.out.println("#################################################################");
+            System.out.println("Starting test: " + description.getMethodName());
+            System.out.println();
+            try {
+                Thread.sleep(500L);
+            } catch (InterruptedException e) {
+
+            }
+        }
+    };
 
     @Test
     public void addDatasourceEnabled() throws Exception {
