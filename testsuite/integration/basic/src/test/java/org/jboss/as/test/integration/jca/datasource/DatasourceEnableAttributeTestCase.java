@@ -123,21 +123,4 @@ public class DatasourceEnableAttributeTestCase extends DatasourceEnableAttribute
         operation.get(VALUE).set(URLValue);
         executeOperation(operation);
     }
-
-    private void enableDatasource(Datasource ds) throws Exception {
-        ModelNode address = new ModelNode()
-            .add(SUBSYSTEM, "datasources")
-            .add("data-source", ds.getName());
-
-        ModelNode operation = new ModelNode();
-        operation.get(OP).set(WRITE_ATTRIBUTE_OPERATION);
-        operation.get(NAME).set(ENABLED);
-        operation.get(VALUE).set(true);
-        operation.get(OP_ADDR).set(address);
-
-        executeOperation(operation);
-        // enabling datasource requires reload
-        reload();
-    }
-
 }
