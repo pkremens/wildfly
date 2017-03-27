@@ -41,6 +41,7 @@ import org.jboss.msc.service.StartException;
 import org.jboss.msc.service.StopContext;
 import org.jboss.msc.value.InjectedValue;
 import org.jboss.tm.ExtendedJBossXATerminator;
+import org.jboss.tm.ImportedTransaction;
 import org.wildfly.security.manager.WildFlySecurityManager;
 import javax.resource.spi.XATerminator;
 import javax.transaction.NotSupportedException;
@@ -74,6 +75,7 @@ public class EJBRemoteTransactionsRepository implements Service<EJBRemoteTransac
 
     private final Map<UserTransactionID, Uid> userTransactions = Collections.synchronizedMap(new HashMap<UserTransactionID, Uid>());
 
+    private final ImportedTransactionCache subordinateTransactions = new ImportedTransactionCache();
 
     private static final Xid[] NO_XIDS = new Xid[0];
     private static final boolean RECOVER_IN_FLIGHT;
@@ -157,10 +159,12 @@ public class EJBRemoteTransactionsRepository implements Service<EJBRemoteTransac
      * @return
      * @throws XAException
      */
-    public SubordinateTransaction getImportedTransaction(final XidTransactionID xidTransactionID) throws XAException {
+    public ImportedTransaction getImportedTransaction(final XidTransactionID xidTransactionID) throws XAException {
         final Xid xid = xidTransactionID.getXid();
         final TransactionImporter transactionImporter = SubordinationManager.getTransactionImporter();
-        return transactionImporter.getImportedTransaction(xid);
+        SubordinateTransaction result =  transactionImporter.getImportedTransaction(xid);
+        if (result == null) return subordinateTransactions.get(xidTransactionID);
+        return result;
     }
 
     /**
@@ -172,9 +176,23 @@ public class EJBRemoteTransactionsRepository implements Service<EJBRemoteTransac
      * @return
      * @throws XAException
      */
-    Transaction importTransaction(final XidTransactionID xidTransactionID, final int txTimeout) throws XAException {
+    ImportedTransaction importTransaction(final XidTransactionID xidTransactionID, final int txTimeout) throws XAException {
         final TransactionImporter transactionImporter = SubordinationManager.getTransactionImporter();
         return transactionImporter.importTransaction(xidTransactionID.getXid(), txTimeout);
+    }
+
+    /**
+     * Same as {@link #importTransaction(XidTransactionID, int) but uses {@link TransactionImporter#importRemoteTransaction(Xid, int)} internally. }
+     * @param xidTransactionID tx xid id
+     * @param timeout tx timeout
+     * @return
+     * @throws XAException
+     */
+    public ImportedTransaction importRemoteTransaction(final XidTransactionID xidTransactionID, final int timeout) throws XAException {
+        final TransactionImporter importer = SubordinationManager.getTransactionImporter();
+        ImportedTransaction result = importer.importRemoteTransaction(xidTransactionID.getXid(), timeout).getTransaction();
+        subordinateTransactions.put(xidTransactionID, result);
+        return result;
     }
 
     public Xid[] getXidsToRecoverForParentNode(final String parentNodeName, int recoveryFlags) throws XAException {
