@@ -130,7 +130,7 @@
         <version.org.apache.neethi>3.0.3.redhat-1</version.org.apache.neethi>
         <version.org.apache.santuario>2.0.8.redhat-1</version.org.apache.santuario>
         <version.org.apache.velocity>1.7.0.redhat-5</version.org.apache.velocity>
-        <version.org.apache.ws.security>2.1.7.redhat-1</version.org.apache.ws.security>
+        <version.org.apache.ws.security>2.1.8.redhat-1</version.org.apache.ws.security>
         <version.org.apache.ws.xmlschema>2.2.1.redhat-1</version.org.apache.ws.xmlschema>
         <version.org.apache.xalan>2.7.1.redhat-11</version.org.apache.xalan>
         <version.org.bouncycastle>1.52.0.redhat-3</version.org.bouncycastle>
