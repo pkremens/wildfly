@@ -170,7 +170,7 @@
         <version.org.jboss.remote-naming>2.0.4.Final-redhat-1</version.org.jboss.remote-naming>
         <version.org.jboss.resteasy>3.0.19.SP1-redhat-1</version.org.jboss.resteasy>
         <version.org.jboss.seam.int>7.0.0.GA-redhat-1</version.org.jboss.seam.int>
-        <version.org.jboss.security.jboss-negotiation>3.0.3.Final-redhat-1</version.org.jboss.security.jboss-negotiation>
+        <version.org.jboss.security.jboss-negotiation>3.0.4.Final-redhat-1</version.org.jboss.security.jboss-negotiation>
         <version.org.jboss.security.jbossxacml>2.0.8.Final-redhat-6</version.org.jboss.security.jbossxacml>
         <version.org.jboss.shrinkwrap.shrinkwrap>1.1.2</version.org.jboss.shrinkwrap.shrinkwrap>
         <!-- only needed here until wildfly-arquillian has this version properly synced with arquillian itslef  -->
