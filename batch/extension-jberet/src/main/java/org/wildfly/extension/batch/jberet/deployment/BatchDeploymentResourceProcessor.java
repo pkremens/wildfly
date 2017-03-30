@@ -60,7 +60,7 @@ public class BatchDeploymentResourceProcessor implements DeploymentUnitProcessor
             final JobOperatorService jobOperatorService = new JobOperatorService(moduleClassLoader);
 
             // Get all the job XML service
-            final WildFlyJobXmlResolver jobXmlResolver = deploymentUnit.getAttachment(WildFlyJobXmlResolver.JOB_XML_RESOLVER);
+            final WildFlyJobXmlResolver jobXmlResolver = deploymentUnit.getAttachment(BatchEnvironmentProcessor.JOB_XML_RESOLVER);
             // Process each job XML file
             for (String jobXml : jobXmlResolver.getJobXmlNames(moduleClassLoader)) {
                 try {
