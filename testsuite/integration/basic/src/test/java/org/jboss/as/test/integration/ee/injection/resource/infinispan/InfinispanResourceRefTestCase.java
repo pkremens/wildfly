@@ -27,6 +27,7 @@ import javax.naming.NamingException;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.as.test.shared.integration.ejb.security.PermissionUtils;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
@@ -36,6 +37,8 @@ import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestDescriptor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.lang.reflect.ReflectPermission;
 
 /**
  * @author Paul Ferraro
@@ -51,6 +54,10 @@ public class InfinispanResourceRefTestCase {
                 Descriptors.create(ManifestDescriptor.class)
                         .attribute("Dependencies", "org.infinispan export")
                         .exportAsString()));
+        war.addAsManifestResource(PermissionUtils.createPermissionsXmlAsset(
+                new RuntimePermission("getClassLoader"),
+                new ReflectPermission("suppressAccessChecks")
+        ), "permissions.xml");
         return war;
     }
 
