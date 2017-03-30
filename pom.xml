@@ -5958,6 +5958,7 @@
                 <version>${version.org.picketlink.picketlink-wildfly8}</version>
             </dependency>
 
+            <!-- This dependency is no longer used as a module. However it is required for client the JMS client library -->
             <dependency>
                 <groupId>org.scannotation</groupId>
                 <artifactId>scannotation</artifactId>
