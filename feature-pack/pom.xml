@@ -31,6 +31,7 @@
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
         <version>7.0.6.GA-redhat-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>wildfly-feature-pack</artifactId>
@@ -66,6 +67,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -2728,6 +2730,7 @@
             </activation>
             <build>
                 <plugins>
+
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>license-maven-plugin</artifactId>
@@ -2749,6 +2752,49 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>prepare</id>
+                                <inherited>false</inherited>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                         <copy todir="${project.build.directory}/${project.build.finalName/classes}">
+					    <fileset dir="${project.build.directory}/../classes"/>
+					  </copy>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>  
+			<groupId>org.codehaus.mojo</groupId>  
+			<artifactId>exec-maven-plugin</artifactId>  
+			<version>1.1.1</version>  
+			<executions>  
+			    <execution>  
+			        <phase>prepare-package</phase>  
+			        <goals>  
+				    <goal>java</goal>  
+			        </goals>  
+			    </execution>  
+		       </executions>  
+		       <configuration>  
+			   <mainClass>org.jboss.as.licenseSummary.GenerateLicenseTable</mainClass>  
+			   <arguments>  
+			       <argument>${project.build.directory}/../src/license/licenses.xslt</argument>  
+			       <argument>${project.build.directory}/../src/license/licenses.xml</argument> 
+		               <argument>${project.build.directory}/${project.build.finalName}/content/docs/licenses/licenses.html</argument>  
+		               <argument>${project.version}</argument>
+			   </arguments>  
+		       </configuration>  
+		    </plugin>
                 </plugins>
             </build>
         </profile>
