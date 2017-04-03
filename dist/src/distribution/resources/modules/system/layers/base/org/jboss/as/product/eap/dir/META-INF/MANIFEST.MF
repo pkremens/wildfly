@@ -1,4 +1,4 @@
 JBoss-Product-Release-Name: JBoss EAP
-JBoss-Product-Release-Version: 7.0.6.GA-redhat-SNAPSHOT
+JBoss-Product-Release-Version: 7.0.6.Alpha1
 JBoss-Product-Console-Slot: eap
 JBoss-Product-Icon: /icon/Shadowman_RGB_32x32.png
