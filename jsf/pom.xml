@@ -29,7 +29,7 @@
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
-        <version>7.0.6.GA-redhat-SNAPSHOT</version>
+        <version>7.0.6.GA-redhat-1</version>
     </parent>
 
     <artifactId>wildfly-jsf-parent</artifactId>
