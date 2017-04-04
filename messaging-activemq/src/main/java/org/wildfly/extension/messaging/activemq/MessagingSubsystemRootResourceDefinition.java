@@ -26,8 +26,11 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.jboss.as.controller.AttributeDefinition;
+import org.jboss.as.controller.OperationContext;
+import org.jboss.as.controller.OperationFailedException;
 import org.jboss.as.controller.PersistentResourceDefinition;
 import org.jboss.as.controller.ReloadRequiredRemoveStepHandler;
+import org.jboss.dmr.ModelNode;
 
 /**
  * {@link org.jboss.as.controller.ResourceDefinition} for the messaging subsystem root resource.
@@ -42,7 +45,13 @@ public class MessagingSubsystemRootResourceDefinition extends PersistentResource
         super(MessagingExtension.SUBSYSTEM_PATH,
                 MessagingExtension.getResourceDescriptionResolver(MessagingExtension.SUBSYSTEM_NAME),
                 MessagingSubsystemAdd.INSTANCE,
-                ReloadRequiredRemoveStepHandler.INSTANCE);
+                new ReloadRequiredRemoveStepHandler() {
+                    @Override
+                    protected void performRuntime(OperationContext context, ModelNode operation, ModelNode model) throws OperationFailedException {
+                        super.performRuntime(context, operation, model);
+                        context.removeService(MessagingServices.ACTIVEMQ_CLIENT_THREAD_POOL);
+                    }
+                });
     }
 
     @Override
