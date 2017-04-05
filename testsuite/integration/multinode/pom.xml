@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>wildfly-ts-integ</artifactId>
-        <version>7.1.0.Beta1-redhat-SNAPSHOT</version>
+        <version>7.1.0.Beta1-redhat-1</version>
     </parent>
 
     <!-- ********************************************************************************** -->
@@ -36,9 +34,6 @@
                 </property>
             </activation>
 
-            <properties>
-            </properties>
-
             <!--
                 Server configuration executions.
                 Naming convention for executions (which we read in the log): for server config X, call it X.server
@@ -62,9 +57,9 @@
                             <target>
                                 <!-- Build the UDP server configs in target. -->
                                 <ant antfile="${jbossas.ts.integ.dir}/src/test/scripts/multinode-build.xml">
-                                    <property name="node1" value="${node1}"/>
-                                    <property name="node0" value="${node0}"/>
-                                    <target name="build-multinode"/>
+                                    <property name="node1" value="${node1}"></property>
+                                    <property name="node0" value="${node0}"></property>
+                                    <target name="build-multinode"></target>
                                 </ant>
                             </target>
                         </configuration>
