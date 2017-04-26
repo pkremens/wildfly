@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>wildfly-ts-integ</artifactId>
-        <version>7.1.0.Beta1-redhat-SNAPSHOT</version>
+        <version>7.1.0.Beta1-redhat-2</version>
     </parent>
 
     <!-- ********************************************************************************** -->
@@ -32,9 +31,6 @@
                     <name>!ts.noIIOP</name>
                 </property>
             </activation>
-
-            <properties>
-            </properties>
 
             <!-- Server configuration executions. -->
             <build>
@@ -73,15 +69,12 @@
                                 <configuration>
                                     <target>
                                         <!-- Configure IIOP server and client. -->
-                                        <ant
-                                                antfile="${jbossas.ts.integ.dir}/src/test/scripts/iiop-build.xml">
-                                            <property name="node0"
-                                                      value="${node0}"/> <!-- inheritAll="true" doesn't work. -->
-                                            <property name="node1"
-                                                      value="${node1}"/>
-                                            <property name="keystore.file" value="${basedir}/target/iiop-test.keystore"/>
-                                            <property name="keystore.password" value="password"/>
-                                            <target name="build-iiop"/>
+                                        <ant antfile="${jbossas.ts.integ.dir}/src/test/scripts/iiop-build.xml">
+                                            <property name="node0" value="${node0}"></property> <!-- inheritAll="true" doesn't work. -->
+                                            <property name="node1" value="${node1}"></property>
+                                            <property name="keystore.file" value="${basedir}/target/iiop-test.keystore"></property>
+                                            <property name="keystore.password" value="password"></property>
+                                            <target name="build-iiop"></target>
                                         </ant>
                                     </target>
                                 </configuration>
@@ -106,11 +99,9 @@
                                 <server.jvm.args>${surefire.system.args} ${jvm.args.ip.server} -Dnode1=${node1}</server.jvm.args>
                                 <server.jvm2.args>${surefire.system.args} ${jvm.args.ip} -Djboss.bind.address=${node1} -Djboss.bind.address.management=${node1} -Djboss.bind.address.unsecure=${node1}</server.jvm2.args>
                             </systemPropertyVariables>
-                            <argLine>
-                                ${modular.jdk.args} ${iiop.endorsed.argline}
+                            <argLine>${modular.jdk.args} ${iiop.endorsed.argline}
                                 -Dcom.sun.CORBA.ORBUseDynamicStub=true
-                                -Dcom.arjuna.ats.arjuna.common.propertiesFile=jbossts-properties.xml
-                            </argLine>
+                                -Dcom.arjuna.ats.arjuna.common.propertiesFile=jbossts-properties.xml</argLine>
                         </configuration>
                         <executions combine.children="append">
 
@@ -209,7 +200,7 @@
             </activation>
             <properties>
                 <!-- JDK9 does not support endorsing mechanism -->
-                <iiop.endorsed.argline/>
+                <iiop.endorsed.argline></iiop.endorsed.argline>
             </properties>
         </profile>
 

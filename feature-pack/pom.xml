@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
   ~ JBoss, Home of Professional Open Source.
   ~ Copyright 2010, Red Hat, Inc., and individual contributors
@@ -21,16 +20,13 @@
   ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
-        <version>7.1.0.Beta1-redhat-SNAPSHOT</version>
+        <version>7.1.0.Beta1-redhat-2</version>
     </parent>
 
     <artifactId>wildfly-feature-pack</artifactId>
@@ -48,7 +44,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <executions></executions>
             </plugin>
             <plugin>
                 <groupId>org.wildfly.build</groupId>
@@ -2929,12 +2924,114 @@
                                 </goals>
                                 <phase>prepare-package</phase>
                                 <configuration>
-                                    <licensesOutputDirectory>
-                                        ${project.build.directory}/${project.build.finalName}/content/docs/licenses
-                                    </licensesOutputDirectory>
-                                    <licensesOutputFile>
-                                        ${project.build.directory}/${project.build.finalName}/content/docs/licenses/licenses.xml
-                                    </licensesOutputFile>
+                                    <licensesOutputDirectory>${project.build.directory}/${project.build.finalName}/content/docs/licenses</licensesOutputDirectory>
+                                    <licensesOutputFile>${project.build.directory}/${project.build.finalName}/content/docs/licenses/licenses.xml</licensesOutputFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>update-licenses-xml</id>
+            <activation>
+                <property>
+                    <name>update-licenses-xml</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-licenses-xml</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.basedir}/src/main/resources/content/docs/licenses</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.basedir}/src/license</directory>
+                                            <includes>
+                                                <include>licenses.xml</include>
+                                            </includes>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>update-licenses-xml</id>
+                                <goals>
+                                    <goal>download-licenses</goal>
+                                </goals>
+                                <phase>prepare-package</phase>
+                                <configuration>
+                                    <sortByGroupIdAndArtifactId>true</sortByGroupIdAndArtifactId>
+                                    <licensesOutputDirectory>${project.basedir}/src/main/resources/content/docs/licenses</licensesOutputDirectory>
+                                    <licensesOutputFile>${project.basedir}/src/main/resources/content/docs/licenses/licenses.xml</licensesOutputFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>generate-licenses-html</id>
+            <activation>
+                <property>
+                    <name>generate-licenses-html</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>xml-maven-plugin</artifactId>
+                        <version>1.0.1</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>generate-licenses-html</id>
+                                <goals>
+                                    <goal>transform</goal>
+                                </goals>
+                                <phase>prepare-package</phase>
+                                <configuration>
+                                    <transformationSets>
+                                        <transformationSet>
+                                            <dir>src/main/resources/content/docs/licenses</dir>
+                                            <includes>
+                                                <include>licenses.xml</include>
+                                            </includes>
+                                            <stylesheet>src/main/resources/content/docs/licenses/licenses.xsl</stylesheet>
+                                            <outputDir>src/main/resources/content/docs/licenses</outputDir>
+                                            <fileMappers>
+                                                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                                                    <targetExtension>.html</targetExtension>
+                                                </fileMapper>
+                                            </fileMappers>                                            <parameters>
+                                                <parameter>
+                                                    <name>version</name>
+                                                    <value>${project.version}</value>
+                                                </parameter>
+                                            </parameters>                                        </transformationSet>
+                                    </transformationSets>
                                 </configuration>
                             </execution>
                         </executions>
@@ -3010,17 +3107,11 @@
                                     <footer>${javadoc.branding}</footer>
 
                                     <includeDependencySources>true</includeDependencySources>
-                                    <dependencySourceIncludes>
-                                        <!-- Filled by a script during creation of Javadoc. -->
-                                    </dependencySourceIncludes>
+                                    <dependencySourceIncludes></dependencySourceIncludes>
 
-                                    <dependencySourceExcludes>
-                                        <!-- Filled by a script during creation of Javadoc. -->
-                                    </dependencySourceExcludes>
+                                    <dependencySourceExcludes></dependencySourceExcludes>
 
-                                    <groups>
-                                        <!-- Filled by a script during creation of Javadoc. -->
-                                    </groups>
+                                    <groups></groups>
 
                                 </configuration>
                             </execution>
