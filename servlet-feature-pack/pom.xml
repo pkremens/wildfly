@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
   ~ JBoss, Home of Professional Open Source.
   ~ Copyright 2010, Red Hat, Inc., and individual contributors
@@ -21,16 +20,13 @@
   ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
-        <version>7.1.0.Beta1-redhat-SNAPSHOT</version>
+        <version>7.1.0.Beta1-redhat-3</version>
     </parent>
 
     <artifactId>wildfly-servlet-feature-pack</artifactId>
@@ -439,7 +435,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <executions></executions>
             </plugin>
             <plugin>
                 <groupId>org.wildfly.build</groupId>
@@ -553,17 +548,11 @@
                                     <footer>${javadoc.branding}</footer>
 
                                     <includeDependencySources>true</includeDependencySources>
-                                    <dependencySourceIncludes>
-                                        <!-- Filled by a script during creation of Javadoc. -->
-                                    </dependencySourceIncludes>
+                                    <dependencySourceIncludes></dependencySourceIncludes>
 
-                                    <dependencySourceExcludes>
-                                        <!-- Filled by a script during creation of Javadoc. -->
-                                    </dependencySourceExcludes>
+                                    <dependencySourceExcludes></dependencySourceExcludes>
 
-                                    <groups>
-                                        <!-- Filled by a script during creation of Javadoc. -->
-                                    </groups>
+                                    <groups></groups>
 
                                 </configuration>
                             </execution>
