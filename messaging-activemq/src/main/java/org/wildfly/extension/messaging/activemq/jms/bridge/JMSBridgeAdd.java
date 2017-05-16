@@ -96,6 +96,9 @@ public class JMSBridgeAdd extends AbstractAddStepHandler {
                     addDependencyForJNDIResource(jmsBridgeServiceBuilder, model, context, JMSBridgeDefinition.TARGET_CONNECTION_FACTORY);
                     addDependencyForJNDIResource(jmsBridgeServiceBuilder, model, context, JMSBridgeDefinition.TARGET_DESTINATION);
                 }
+                // add a dependency to the Artemis thread pool so that if either the source or target JMS broker
+                // corresponds to a local Artemis server, the pool will be cleaned up after the JMS bridge is stopped.
+                jmsBridgeServiceBuilder.addDependency(MessagingServices.ACTIVEMQ_CLIENT_THREAD_POOL);
 
                 jmsBridgeServiceBuilder.install();
 
