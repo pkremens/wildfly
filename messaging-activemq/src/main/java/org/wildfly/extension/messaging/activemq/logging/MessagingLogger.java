@@ -819,4 +819,7 @@ public interface MessagingLogger extends BasicLogger {
     @Message(id = 87, value = "Unable to load connector service factory class: %s")
     OperationFailedException unableToLoadConnectorServiceFactoryClass(String factroyClass);
 
+    @LogMessage(level = WARN)
+    @Message(id = 95, value = "Multiple client-mapping found for ActiveMQ [%s] transport configuration. Using configuration: [host: %s, port %s]")
+    void multipleClientMappingsFound(String transportConfigName, String host, int port);
 }
