@@ -23,7 +23,9 @@
 package org.jboss.as.licenseSummary;
 
 import com.sun.media.jfxmedia.logging.Logger;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,10 +48,13 @@ public class GenerateLicenseTable {
                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
                 DocumentBuilder db = dbf.newDocumentBuilder();
                 Document document = db.parse(xmlfile);
+                File file = new File(argv[3]);
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String version = br.readLine();
                 StreamSource stylesource = new StreamSource(stylesheet);
                 TransformerFactory tf = TransformerFactory.newInstance();
                 Transformer transformer = tf.newTransformer(stylesource);
-                transformer.setParameter("version", argv[3]);
+                transformer.setParameter("version", version);
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 Date date = new Date();
                 transformer.setParameter("timestamp", dateFormat.format(date));
