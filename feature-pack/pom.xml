@@ -2765,7 +2765,7 @@
                                 </goals>
                                 <configuration>
                                     <target>
-                                         <copy todir="${project.build.directory}/${project.build.finalName/classes}">
+                                         <copy todir="${project.build.directory}/classes">
 					    <fileset dir="${project.build.directory}/../classes"/>
 					  </copy>
                                     </target>
@@ -2776,7 +2776,7 @@
                     <plugin>  
 			<groupId>org.codehaus.mojo</groupId>  
 			<artifactId>exec-maven-plugin</artifactId>  
-			<version>1.1.1</version>  
+			<version>1.5.0</version>  
 			<executions>  
 			    <execution>  
 			        <phase>prepare-package</phase>  
@@ -2791,7 +2791,7 @@
 			       <argument>${project.build.directory}/../src/license/licenses.xslt</argument>  
 			       <argument>${project.build.directory}/../src/license/licenses.xml</argument> 
 		               <argument>${project.build.directory}/${project.build.finalName}/content/docs/licenses/licenses.html</argument>  
-		               <argument>${project.version}</argument>
+		               <argument>${project.build.directory}/../src/main/resources/content/version.txt</argument>
 			   </arguments>  
 		       </configuration>  
 		    </plugin>
