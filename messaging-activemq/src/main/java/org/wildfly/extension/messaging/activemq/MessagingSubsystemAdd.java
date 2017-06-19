@@ -22,6 +22,7 @@
 
 package org.wildfly.extension.messaging.activemq;
 
+import org.apache.activemq.artemis.api.core.client.ActiveMQClient;
 import org.jboss.as.controller.AbstractBoottimeAddStepHandler;
 import org.jboss.as.controller.OperationContext;
 import org.jboss.as.controller.OperationFailedException;
@@ -30,6 +31,10 @@ import org.jboss.as.server.DeploymentProcessorTarget;
 import org.jboss.as.server.deployment.Phase;
 import org.jboss.dmr.ModelNode;
 import org.wildfly.extension.messaging.activemq.deployment.CDIDeploymentProcessor;
+import org.jboss.msc.service.Service;
+import org.jboss.msc.service.StartContext;
+import org.jboss.msc.service.StartException;
+import org.jboss.msc.service.StopContext;
 import org.wildfly.extension.messaging.activemq.deployment.DefaultJMSConnectionFactoryBindingProcessor;
 import org.wildfly.extension.messaging.activemq.deployment.DefaultJMSConnectionFactoryResourceReferenceProcessor;
 import org.wildfly.extension.messaging.activemq.deployment.JMSConnectionFactoryDefinitionAnnotationProcessor;
@@ -75,6 +80,32 @@ class MessagingSubsystemAdd extends AbstractBoottimeAddStepHandler {
                 processorTarget.addDeploymentProcessor(MessagingExtension.SUBSYSTEM_NAME, Phase.INSTALL, Phase.INSTALL_MESSAGING_XML_RESOURCES, new MessagingXmlInstallDeploymentUnitProcessor());
             }
         }, OperationContext.Stage.RUNTIME);
+        context.getServiceTarget().addService(MessagingServices.ACTIVEMQ_CLIENT_THREAD_POOL, new ThreadPoolService())
+                .install();
+    }
+
+    /**
+     * Service to ensure that Artemis global client thread pools have the opportunity to shutdown when the server is
+     * stopped (or the subsystem is removed).
+     */
+    private static class ThreadPoolService implements Service<Void> {
+
+        public ThreadPoolService() {
+        }
+
+        @Override
+        public void start(StartContext startContext) throws StartException {
+        }
+
+        @Override
+        public void stop(StopContext stopContext) {
+            ActiveMQClient.clearThreadPools();
+        }
+
+        @Override
+        public Void getValue() throws IllegalStateException, IllegalArgumentException {
+            return null;
+        }
     }
 
 }

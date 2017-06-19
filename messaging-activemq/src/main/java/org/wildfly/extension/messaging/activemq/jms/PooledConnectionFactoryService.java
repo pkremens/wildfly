@@ -283,6 +283,8 @@ public class PooledConnectionFactoryService implements Service<Void> {
                 .addDependency(serverServiceName, ActiveMQServer.class, service.activeMQServer)
                 .addDependency(ActiveMQActivationService.getServiceName(serverServiceName))
                 .addDependency(JMSServices.getJmsManagerBaseServiceName(serverServiceName))
+                // ensures that Artemis client thread pools are not stopped before any deployment depending on a pooled-connection-factory
+                .addDependency(MessagingServices.ACTIVEMQ_CLIENT_THREAD_POOL)
                 .setInitialMode(ServiceController.Mode.PASSIVE);
         serviceBuilder.install();
     }
