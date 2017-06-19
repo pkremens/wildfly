@@ -48,6 +48,7 @@ import org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl;
 import org.jboss.as.controller.OperationContext;
 import org.jboss.as.controller.services.path.AbsolutePathService;
 import org.jboss.as.controller.services.path.PathManager;
+import org.jboss.as.network.ClientMapping;
 import org.jboss.as.network.ManagedBinding;
 import org.jboss.as.network.NetworkUtils;
 import org.jboss.as.network.OutboundSocketBinding;
@@ -192,13 +193,25 @@ class ActiveMQServerService implements Service<ActiveMQServer> {
                             if (socketBinding == null) {
                                 throw MessagingLogger.ROOT_LOGGER.failedToFindConnectorSocketBinding(tc.getName());
                             }
-                            InetSocketAddress sa = socketBinding.getSocketAddress();
-                            port = sa.getPort();
-                            // resolve the host name of the address only if a loopback address has been set
-                            if (sa.getAddress().isLoopbackAddress()) {
-                                host = NetworkUtils.canonize(sa.getAddress().getHostName());
+                            if (socketBinding.getClientMappings() != null && !socketBinding.getClientMappings().isEmpty()) {
+                                // At the moment ActiveMQ doesn't allow to select mapping based on client's network.
+                                // Instead the first client-mapping element will always be used - see WFLY-8432
+                                ClientMapping clientMapping = socketBinding.getClientMappings().get(0);
+                                host = NetworkUtils.canonize(clientMapping.getDestinationAddress());
+                                port = clientMapping.getDestinationPort();
+
+                                if (socketBinding.getClientMappings().size() > 1) {
+                                    MessagingLogger.ROOT_LOGGER.multipleClientMappingsFound(socketBinding.getName(), tc.getName(), host, port);
+                                }
                             } else {
-                                host = NetworkUtils.canonize(sa.getAddress().getHostAddress());
+                                InetSocketAddress sa = socketBinding.getSocketAddress();
+                                port = sa.getPort();
+                                // resolve the host name of the address only if a loopback address has been set
+                                if (sa.getAddress().isLoopbackAddress()) {
+                                    host = NetworkUtils.canonize(sa.getAddress().getHostName());
+                                } else {
+                                    host = NetworkUtils.canonize(sa.getAddress().getHostAddress());
+                                }
                             }
                         } else {
                             port = binding.getDestinationPort();
@@ -212,6 +225,7 @@ class ActiveMQServerService implements Service<ActiveMQServer> {
                                 tc.getParams().put(TransportConstants.LOCAL_PORT_PROP_NAME, binding.getAbsoluteSourcePort());
                             }
                         }
+
                         tc.getParams().put(HOST, host);
                         tc.getParams().put(PORT, port);
                     }

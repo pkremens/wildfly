@@ -233,4 +233,23 @@ public class ActiveMQProviderJMSOperations implements JMSOperations {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addHttpConnector(String connectorName, String socketBinding, String endpoint) {
+        ModelNode address = getServerAddress()
+                .add("http-connector", connectorName);
+
+        ModelNode attributes = new ModelNode();
+        attributes.get("socket-binding").set(socketBinding);
+        attributes.get("endpoint").set(endpoint);
+
+        executeOperation(address, ADD, attributes);
+    }
+
+    @Override
+    public void removeHttpConnector(String connectorName) {
+        ModelNode address = getServerAddress()
+                .add("http-connector", connectorName);
+        executeOperation(address, REMOVE_OPERATION, null);
+    }
 }
