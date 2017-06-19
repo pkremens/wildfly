@@ -108,6 +108,7 @@ import org.jboss.security.identitytrust.config.IdentityTrustModuleEntry;
 import org.jboss.security.mapping.MappingType;
 import org.jboss.security.mapping.config.MappingModuleEntry;
 import org.wildfly.clustering.infinispan.spi.service.CacheContainerServiceName;
+import org.wildfly.clustering.infinispan.spi.service.CacheServiceName;
 
 /**
  * Add a security domain configuration.
@@ -167,6 +168,7 @@ class SecurityDomainAdd extends AbstractAddStepHandler {
         if ("infinispan".equals(cacheType)) {
             builder.addDependency(CacheContainerServiceName.CACHE_CONTAINER.getServiceName(CACHE_CONTAINER_NAME),
                     Object.class, securityDomainService.getCacheManagerInjector());
+            builder.addDependency(CacheServiceName.CACHE.getServiceName("security", CacheServiceName.DEFAULT_CACHE));
         }
 
         builder.setInitialMode(ServiceController.Mode.ACTIVE).install();
