@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
   Set these VM properties in your IDE debugger
 
@@ -7,15 +6,13 @@
   -Djboss.home=${workspace_loc:jboss-as-build}/target/jboss-as-8.0.0.Alpha4-SNAPSHOT
   -DallowConnectingToRunningServer=true
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>wildfly-ts-integ</artifactId>
-        <version>7.0.7.GA-redhat-SNAPSHOT</version>
+        <version>7.0.7.GA-redhat-1</version>
     </parent>
 
     <!-- ********************************************************************************** -->
@@ -79,10 +76,10 @@
                                 </goals>
                                 <configuration>
                                     <target>
-                                        <property name="tests.resources.dir" value="${basedir}/../src/test/resources"/>
-                                        <property name="tests.output.dir" value="${project.build.directory}"/>
+                                        <property name="tests.resources.dir" value="${basedir}/../src/test/resources"></property>
+                                        <property name="tests.output.dir" value="${project.build.directory}"></property>
                                         <ant antfile="${basedir}/../src/test/scripts/basic-integration-build.xml">
-                                            <target name="build-basic-integration"/>
+                                            <target name="build-basic-integration"></target>
                                             <!-- TODO: Unify names, then call "recursively". -->
                                         </ant>
                                     </target>
@@ -436,10 +433,8 @@
                                         <argument>-iiop</argument>
                                         <argument>-classpath</argument>
                                         <argument>${jboss.dist}/bin/client/jboss-client.jar:.</argument>
-                                        <argument>org.jboss.as.test.integration.ejb.iiop.naming.IIOPNamingHome
-                                        </argument>
-                                        <argument>org.jboss.as.test.integration.ejb.iiop.naming.IIOPStatefulNamingHome
-                                        </argument>
+                                        <argument>org.jboss.as.test.integration.ejb.iiop.naming.IIOPNamingHome</argument>
+                                        <argument>org.jboss.as.test.integration.ejb.iiop.naming.IIOPStatefulNamingHome</argument>
                                     </arguments>
                                 </configuration>
                             </execution>

@@ -20,8 +20,6 @@
   ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
-
-
 <!--
     1. The testsuite module has a small number of submodules:
 
@@ -46,16 +44,13 @@
        in the pom for the module which contains the tests. See the submodule poms for more details.
 
 -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
-        <version>7.0.7.GA-redhat-SNAPSHOT</version>
+        <version>7.0.7.GA-redhat-1</version>
     </parent>
 
     <artifactId>wildfly-testsuite</artifactId>
@@ -144,7 +139,7 @@
         <surefire.memory.args>-Xmx512m -XX:MaxMetaspaceSize=256m</surefire.memory.args>
         <surefire.jpda.args></surefire.jpda.args>
         <as.debug.port>8787</as.debug.port>
-        <surefire.system.args> -Dorg.jboss.ejb.client.wildfly-testsuite-hack=true ${surefire.memory.args} ${surefire.jpda.args} -Djboss.dist=${jboss.dist}</surefire.system.args>
+        <surefire.system.args>-Dorg.jboss.ejb.client.wildfly-testsuite-hack=true ${surefire.memory.args} ${surefire.jpda.args} -Djboss.dist=${jboss.dist}</surefire.system.args>
         <surefire.forked.process.timeout>1500</surefire.forked.process.timeout>
 
         <!-- If servers should be killed before the test suite is run-->
@@ -694,7 +689,7 @@
                                 <configuration>
                                     <transformationSets>
                                         <transformationSet>
-                                            <dir      >${basedir}/target/jdbcDrivers</dir>
+                                            <dir>${basedir}/target/jdbcDrivers</dir>
                                             <outputDir>${basedir}/target/jdbcDrivers</outputDir>
                                             <stylesheet>${xslt.scripts.dir}/changeModule.xsl</stylesheet>
                                             <includes>
@@ -755,12 +750,6 @@
                     <version>${ds.jdbc.driver.version}</version>
                 </dependency>
             </dependencies>
-            <repositories>
-                <repository>
-                    <id>JBoss QA repository</id>
-                    <url>http://nexus.qa.jboss.com:8081/nexus/content/repositories/thirdparty</url>
-                </repository>
-            </repositories>
             <build>
                 <plugins>
                     <plugin>
@@ -802,7 +791,7 @@
                                 <configuration>
                                     <transformationSets>
                                         <transformationSet>
-                                            <dir      >${basedir}/target/jbossas/standalone/configuration</dir>
+                                            <dir>${basedir}/target/jbossas/standalone/configuration</dir>
                                             <outputDir>${basedir}/target/jbossas/standalone/configuration</outputDir>
                                             <stylesheet>${xslt.scripts.dir}/changeDatabase.xsl</stylesheet>
                                             <includes>
@@ -985,7 +974,7 @@
                                             <property name="reports.dest.dir" value="${basedir}/target/reports"/>
                                             <property name="reports.src.mask" value="**/target/surefire-reports/TEST-*.xml"/>
                                             -->
-                                            <target name="reports"/>
+                                            <target name="reports"></target>
                                         </ant>
                                     </target>
                                 </configuration>
@@ -1001,7 +990,7 @@
                                 <inherited>false</inherited>
                                 <configuration>
                                     <target>
-                                        <loadfile property="help.banner" srcFile="${basedir}/tools/help-banner.txt"/>
+                                        <loadfile property="help.banner" srcFile="${basedir}/tools/help-banner.txt"></loadfile>
                                         <echo>${help.banner}</echo>
                                     </target>
                                 </configuration>
@@ -1120,7 +1109,7 @@
                                 <configuration>
                                     <target>
                                         <taskdef name="report" classname="org.jacoco.ant.ReportTask">
-                                            <classpath path="${basedir}/target/jacoco-jars/org.jacoco.ant.jar"/>
+                                            <classpath path="${basedir}/target/jacoco-jars/org.jacoco.ant.jar"></classpath>
                                         </taskdef>
                                         <!--
                                         <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml" classpathref="maven.plugin.classpath">
@@ -1128,25 +1117,25 @@
                                         </taskdef>
                                         -->
                                         <echo>Creating JaCoCo test coverage reports...</echo>
-                                        <mkdir dir="${basedir}/target/coverage-report"/>
+                                        <mkdir dir="${basedir}/target/coverage-report"></mkdir>
                                         <report>
                                             <executiondata>
                                                 <fileset dir="${basedir}">
-                                                    <include name="**/target/jacoco.exec"/>
+                                                    <include name="**/target/jacoco.exec"></include>
                                                 </fileset>
                                             </executiondata>
                                             <structure name="AS 7 project">
                                                 <classfiles>
                                                     <fileset dir="${jboss.dist}/modules">
-                                                        <include name="**/*.jar"/>
+                                                        <include name="**/*.jar"></include>
                                                         <!-- Excludes solve "Can't add different class with same name: ..." -->
                                                         <!-- We have 2.x in main. -->
-                                                        <exclude name="com/sun/jsf-impl/1.*/**/*"/>
+                                                        <exclude name="com/sun/jsf-impl/1.*/**/*"></exclude>
                                                         <!--  Wildfly-3383 - com/sun/codemodel vs. /1.0/com/sun/codemodel -->
-                                                        <exclude name="com/sun/xml/**/*"/>
-                                                        <exclude name="javax/faces/api/1.2/**/*"/>
+                                                        <exclude name="com/sun/xml/**/*"></exclude>
+                                                        <exclude name="javax/faces/api/1.2/**/*"></exclude>
                                                         <!-- Wildfly-3390 -->
-                                                        <exclude name="org/apache/commons/beanutils/**/*"/>
+                                                        <exclude name="org/apache/commons/beanutils/**/*"></exclude>
                                                         <!-- Wildfly-3389 -->
                                                     </fileset>
                                                 </classfiles>
@@ -1157,83 +1146,83 @@
                                                              echo "<fileset dir=\"../$DIR\"><include name=\"**/*.java\"/></fileset>";
                                                          done
                                                     -->
-                                                    <fileset dir="../appclient/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/common/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/common-domain/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/container-embedded/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/container-managed/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/container-managed-domain/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/container-remote/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/container-remote-domain/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/protocol-jmx/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../arquillian/testenricher-msc/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../cli/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/api/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/common/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/ejb3-infinispan/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/impl/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/infinispan/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/jgroups/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/registry/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/service/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/singleton/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/web-infinispan/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../clustering/web-spi/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../cmp/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../config-assembly/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../connector/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../controller-client/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../controller/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../deployment-repository/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../deployment-scanner/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../domain-http/interface/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../domain-management/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../ee/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../ejb3/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../embedded/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../host-controller/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jacorb/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jaxr/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jaxrs/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jdr/jboss-as-jdr/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jmx/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jpa/core/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jpa/hibernate3/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jpa/hibernate4/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jpa/openjpa/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jpa/spi/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jpa/util/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../jsr77/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../logging/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../mail/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../management-client-content/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../messaging/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../modcluster/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../naming/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../network/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../platform-mbean/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../pojo/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../process-controller/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../protocol/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../remoting/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../sar/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../security/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../server/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../subsystem-test/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../testsuite/shared/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../threads/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../transactions/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../webservices/server-integration/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../webservices/tests-integration/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../web/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../weld/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../xts/src/main/java"><include name="**/*.java"/></fileset>
-                                                    <fileset dir="../rts/src/main/java"><include name="**/*.java"/></fileset>
+                                                    <fileset dir="../appclient/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/common/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/common-domain/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/container-embedded/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/container-managed/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/container-managed-domain/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/container-remote/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/container-remote-domain/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/protocol-jmx/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../arquillian/testenricher-msc/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../cli/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/api/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/common/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/ejb3-infinispan/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/impl/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/infinispan/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/jgroups/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/registry/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/service/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/singleton/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/web-infinispan/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../clustering/web-spi/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../cmp/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../config-assembly/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../connector/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../controller-client/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../controller/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../deployment-repository/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../deployment-scanner/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../domain-http/interface/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../domain-management/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../ee/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../ejb3/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../embedded/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../host-controller/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jacorb/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jaxr/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jaxrs/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jdr/jboss-as-jdr/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jmx/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jpa/core/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jpa/hibernate3/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jpa/hibernate4/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jpa/openjpa/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jpa/spi/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jpa/util/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../jsr77/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../logging/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../mail/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../management-client-content/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../messaging/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../modcluster/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../naming/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../network/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../platform-mbean/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../pojo/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../process-controller/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../protocol/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../remoting/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../sar/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../security/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../server/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../subsystem-test/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../testsuite/shared/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../threads/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../transactions/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../webservices/server-integration/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../webservices/tests-integration/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../web/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../weld/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../xts/src/main/java"><include name="**/*.java"></include></fileset>
+                                                    <fileset dir="../rts/src/main/java"><include name="**/*.java"></include></fileset>
                                                 </sourcefiles>
                                             </structure>
-                                            <html destdir ="${basedir}/target/coverage-report/html"/>
-                                            <xml  destfile="${basedir}/target/coverage-report/coverage-report.xml"/>
-                                            <csv  destfile="${basedir}/target/coverage-report/coverage-report.csv"/>
+                                            <html destdir="${basedir}/target/coverage-report/html"></html>
+                                            <xml destfile="${basedir}/target/coverage-report/coverage-report.xml"></xml>
+                                            <csv destfile="${basedir}/target/coverage-report/coverage-report.csv"></csv>
                                         </report>
                                     </target>
                                 </configuration>
