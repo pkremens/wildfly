@@ -104,7 +104,6 @@ public class UndertowDeploymentProcessor implements DeploymentUnitProcessor {
     private final String defaultHost;
     private final String defaultContainer;
     private final String defaultSecurityDomain;
-    private static final Set<String> ssos = Collections.synchronizedSet(new HashSet<String>());
 
     public UndertowDeploymentProcessor(String defaultHost, final String defaultContainer, String defaultServer, String defaultSecurityDomain) {
         this.defaultHost = defaultHost;
@@ -256,8 +255,9 @@ public class UndertowDeploymentProcessor implements DeploymentUnitProcessor {
 
         additionalDependencies.addAll(warMetaData.getAdditionalDependencies());
 
-        if (ssos.contains(hostName)) {
-            additionalDependencies.add(UndertowService.ssoServiceName(serverInstanceName, hostName));
+        final ServiceName ssoServiceName = UndertowService.ssoServiceName(serverInstanceName, hostName);
+        if (deploymentUnit.getServiceRegistry().getService(ssoServiceName) != null) { // sso is configured for the host
+            additionalDependencies.add(ssoServiceName);
         }
 
         final ServiceName hostServiceName = UndertowService.virtualHostName(serverInstanceName, hostName);
@@ -490,10 +490,6 @@ public class UndertowDeploymentProcessor implements DeploymentUnitProcessor {
             }
         }
         return securityDomain;
-    }
-
-    public static void addSSO(String hostName) {
-        ssos.add(hostName);
     }
 
 }

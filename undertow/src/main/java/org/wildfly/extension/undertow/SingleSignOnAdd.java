@@ -36,7 +36,6 @@ import org.jboss.dmr.ModelNode;
 import org.jboss.msc.service.ServiceController;
 import org.jboss.msc.service.ServiceName;
 import org.jboss.msc.service.ServiceTarget;
-import org.wildfly.extension.undertow.deployment.UndertowDeploymentProcessor;
 import org.wildfly.extension.undertow.security.sso.SingleSignOnManagerService;
 
 /**
@@ -75,7 +74,6 @@ class SingleSignOnAdd extends AbstractAddStepHandler {
                 .setInitialMode(ServiceController.Mode.ON_DEMAND)
                 .install();
 
-        UndertowDeploymentProcessor.addSSO(hostName);
         final SingleSignOnService service = new SingleSignOnService(domain, path, httpOnly, secure, cookieName);
         target.addService(serviceName, service)
                 .addDependency(virtualHostServiceName, Host.class, service.getHost())
