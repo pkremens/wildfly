@@ -31,7 +31,7 @@
 
     <groupId>org.jboss.eap</groupId>
     <artifactId>jboss-eap-parent</artifactId>
-    <version>7.1.0.GA-redhat-1</version>
+    <version>7.1.0.GA-redhat-SNAPSHOT</version>
 
     <name>WildFly: Parent Aggregator</name>
     <description>WildFly: Parent Aggregator</description>
@@ -241,12 +241,12 @@
         <version.verifier.plugin>1.1</version.verifier.plugin>
 
         <!-- Modularized JDK support (various workarounds) - activated via profile -->
-        <modular.jdk.args></modular.jdk.args>
-        <modular.jdk.props></modular.jdk.props>
+        <modular.jdk.args/>
+        <modular.jdk.props/>
 
         <!-- Surefire args -->
-        <surefire.jpda.args></surefire.jpda.args>
-        <surefire.extra.args></surefire.extra.args>
+        <surefire.jpda.args/>
+        <surefire.extra.args/>
         <surefire.system.args>${modular.jdk.args} ${modular.jdk.props} -ea -Duser.region=US -Duser.language=en -XX:MaxMetaspaceSize=256m ${surefire.jpda.args} ${surefire.extra.args}</surefire.system.args>
         <!-- Checkstyle configuration -->
         <linkXRef>false</linkXRef>
@@ -363,42 +363,6 @@
                 <assemblyRootFolder>jboss-eap-${jboss.eap.release.version}-src</assemblyRootFolder>
               </configuration>
             </plugin>
-            <plugin>
-        <groupId>com.redhat.rcm.maven.plugin</groupId>
-        <artifactId>buildmetadata-maven-plugin</artifactId>
-        <version>1.7.0</version>
-        <executions>
-          <execution>
-            <id>build-metadata</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>provide-buildmetadata</goal>
-            </goals>
-            <configuration>
-              <addToLocations>
-                <addToLocation>${session.executionRootDirectory}</addToLocation>
-              </addToLocations>
-              <activateOutputFileMapping>true</activateOutputFileMapping>
-              <addBuildDateInfo>false</addBuildDateInfo>
-              <addLocallyModifiedTagToFullVersion>false</addLocallyModifiedTagToFullVersion>
-              <addHostInfo>false</addHostInfo>
-              <addJavaRuntimeInfo>true</addJavaRuntimeInfo>
-              <addToFilters>false</addToFilters>
-              <validateCheckout>false</validateCheckout>
-              <addOsInfo>false</addOsInfo>
-              <hideJavaOptsInfo>false</hideJavaOptsInfo>
-              <forceNewProperties>true</forceNewProperties>
-              <hideCommandLineInfo>false</hideCommandLineInfo>
-              <addBuildDateToFullVersion>false</addBuildDateToFullVersion>
-              <createPropertiesReport>true</createPropertiesReport>
-              <addToGeneratedSources>false</addToGeneratedSources>
-              <createXmlReport>false</createXmlReport>
-              <propertiesOutputFile>build.metadata</propertiesOutputFile>
-              <addMavenExecutionInfo>false</addMavenExecutionInfo>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -475,7 +439,7 @@
                         <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
                         <excludes>**/*$logger.java,**/*$bundle.java</excludes>
-                        <useFile></useFile>
+                        <useFile/>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -594,7 +558,7 @@
                                             <exclude>xml-apis:xml-apis</exclude>
                                         </excludes>
                                     </bannedDependencies>
-                                    <dependencyConvergence></dependencyConvergence>
+                                    <dependencyConvergence/>
                                 </rules>
                             </configuration>
                         </execution>
@@ -610,63 +574,89 @@
                             <pluginExecutions>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <groupId>
+                                            org.apache.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            maven-dependency-plugin
+                                        </artifactId>
                                         <versionRange>[2.1,)</versionRange>
                                         <goals>
                                             <goal>copy</goal>
                                             <goal>properties</goal>
-                                            <goal>copy-dependencies</goal>
+                                            <goal>
+                                                copy-dependencies
+                                            </goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore></ignore>
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-checkstyle-plugin</artifactId>
+                                        <groupId>
+                                            org.apache.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            maven-checkstyle-plugin
+                                        </artifactId>
                                         <versionRange>[2.5,)</versionRange>
                                         <goals>
                                             <goal>checkstyle</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore></ignore>
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-clean-plugin</artifactId>
+                                        <groupId>
+                                            org.apache.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            maven-clean-plugin
+                                        </artifactId>
                                         <versionRange>[2.4.1,)</versionRange>
                                         <goals>
                                             <goal>clean</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore></ignore>
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-antrun-plugin</artifactId>
-                                        <versionRange>[1.4,)</versionRange>
+                                        <groupId>
+                                            org.apache.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            maven-antrun-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.4,)
+                                        </versionRange>
                                         <goals>
                                             <goal>run</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore></ignore>
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.codehaus.mojo</groupId>
-                                        <artifactId>javacc-maven-plugin</artifactId>
-                                        <versionRange>[2.5,)</versionRange>
+                                        <groupId>
+                                            org.codehaus.mojo
+                                        </groupId>
+                                        <artifactId>
+                                            javacc-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [2.5,)
+                                        </versionRange>
                                         <goals>
                                             <goal>jjtree</goal>
                                             <goal>javacc</goal>
@@ -674,27 +664,39 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore></ignore>
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.codehaus.mojo</groupId>
-                                        <artifactId>xml-maven-plugin</artifactId>
-                                        <versionRange>[1.0,)</versionRange>
+                                        <groupId>
+                                            org.codehaus.mojo
+                                        </groupId>
+                                        <artifactId>
+                                            xml-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.0,)
+                                        </versionRange>
                                         <goals>
                                             <goal>transform</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore></ignore>
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-help-plugin</artifactId>
-                                        <versionRange>[2.1.1,)</versionRange>
+                                        <groupId>
+                                            org.apache.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            maven-help-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [2.1.1,)
+                                        </versionRange>
                                         <goals>
                                        <goal>active-profiles</goal>
                                        <goal>effective-pom</goal>
@@ -708,11 +710,19 @@
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.codehaus.mojo</groupId>
-                                        <artifactId>properties-maven-plugin</artifactId>
-                                        <versionRange>[1.0-alpha-2,)</versionRange>
+                                        <groupId>
+                                            org.codehaus.mojo
+                                        </groupId>
+                                        <artifactId>
+                                            properties-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.0-alpha-2,)
+                                        </versionRange>
                                         <goals>
-                                            <goal>write-project-properties</goal>
+                                            <goal>
+                                                write-project-properties
+                                            </goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
@@ -721,9 +731,15 @@
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.codehaus.mojo</groupId>
-                                        <artifactId>keytool-maven-plugin</artifactId>
-                                        <versionRange>[1.2,)</versionRange>
+                                        <groupId>
+                                            org.codehaus.mojo
+                                        </groupId>
+                                        <artifactId>
+                                            keytool-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.2,)
+                                        </versionRange>
                                         <goals>
                                             <goal>clean</goal>
                                             <goal>genkey</goal>
@@ -737,11 +753,19 @@
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.kuali.maven.plugins</groupId>
-                                        <artifactId>properties-maven-plugin</artifactId>
-                                        <versionRange>[2.0.1,)</versionRange>
+                                        <groupId>
+                                            org.kuali.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            properties-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [2.0.1,)
+                                        </versionRange>
                                         <goals>
-                                            <goal>write-project-properties</goal>
+                                            <goal>
+                                                write-project-properties
+                                            </goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
@@ -750,9 +774,15 @@
                                 </pluginExecution>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>org.wildfly.build</groupId>
-                                        <artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
-                                        <versionRange>[1.0.0.Alpha2,)</versionRange>
+                                        <groupId>
+                                            org.wildfly.build
+                                        </groupId>
+                                        <artifactId>
+                                            wildfly-server-provisioning-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.0.0.Alpha2,)
+                                        </versionRange>
                                         <goals>
                                             <goal>build</goal>
                                         </goals>
@@ -854,46 +884,46 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-appclient</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-batch</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-batch-jberet</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-build</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-bean-validation</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-feature-pack</artifactId>
                 <type>pom</type>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-feature-pack</artifactId>
                 <type>zip</type>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
@@ -905,164 +935,164 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-api</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-common</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-ee-infinispan</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-ee-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-ejb-infinispan</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-ejb-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-infinispan-extension</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-infinispan-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-jgroups-api</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-jgroups-extension</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-jgroups-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-marshalling-api</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-marshalling-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-marshalling-infinispan</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-marshalling-jboss</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-server</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-service</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-singleton-api</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-singleton-extension</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-web-api</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-web-infinispan</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-web-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-web-undertow</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-cmp</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-configadmin</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-connector</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-dist</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-client-all</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>sun.jdk</groupId>
@@ -1074,13 +1104,13 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-ee</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-ejb3</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <!-- TODO remove this exclusion once this supports JTA 1.2 -->
                     <!-- superseded by org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec -->
@@ -1098,87 +1128,87 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-ejb-client-bom</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-iiop-openjdk</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jacorb</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jaxr</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jaxrs</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jdr</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jms-client-bom</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jsr77</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-mail</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-messaging</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-messaging-activemq</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-mod_cluster-extension</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-mod_cluster-undertow</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-naming</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
@@ -1196,7 +1226,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-picketlink</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.picketlink</groupId>
@@ -1212,49 +1242,49 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-pojo</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-security-api</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-security</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-sar</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-system-jmx</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-transactions</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-undertow</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-web</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.jboss.logging</groupId>
@@ -1266,13 +1296,13 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-web-common</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-servlet-dist</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <type>pom</type>
             </dependency>
 
@@ -1280,80 +1310,80 @@
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-servlet-feature-pack</artifactId>
                 <type>pom</type>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-servlet-feature-pack</artifactId>
                 <type>zip</type>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-webservices-server-integration</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-common</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-ejb</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-jpa</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-bean-validation</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-webservices</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-transactions</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-xts</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-rts</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
@@ -1371,7 +1401,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-testsuite-shared</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <scope>test</scope>
             </dependency>
             <!-- External Dependencies -->
@@ -2642,7 +2672,7 @@
                          <artifactId>spring-web</artifactId>
                     </exclusion>
                     <exclusion>
-                         <groupId>org.slf4j</groupId>
+                         <groupId> org.slf4j</groupId>
                          <artifactId>slf4j-api</artifactId>
                     </exclusion>
                     <exclusion>
@@ -4523,13 +4553,13 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jpa</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-spi</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <!-- TODO remove this exclusion once this supports JTA 1.2 -->
                     <!-- superseded by org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec -->
@@ -4543,7 +4573,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-hibernate5</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.hibernate</groupId>
@@ -4567,7 +4597,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-hibernate4-3</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.hibernate</groupId>
@@ -4587,7 +4617,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-hibernate4-1</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.hibernate</groupId>
@@ -4607,25 +4637,25 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-eclipselink</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-openjpa</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jsf</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jsf-injection</artifactId>
-                <version>7.1.0.GA-redhat-1</version>
+                <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.apache.myfaces.core</groupId>
@@ -6218,11 +6248,13 @@
                 <jdk>9</jdk>
             </activation>
             <properties>
-                <modular.jdk.args>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED
+                <modular.jdk.args>
+                    --add-exports=java.base/sun.nio.ch=ALL-UNNAMED
                     --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED
                     --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
                     --illegal-access=permit
-                    --add-modules=java.xml.bind</modular.jdk.args>
+                    --add-modules=java.xml.bind
+                </modular.jdk.args>
                 <!-- [WFCORE-1494] remove JUL workaround -->
                 <modular.jdk.props>-Dsun.util.logging.disableCallerCheck=true -Djdk.attach.allowAttachSelf=true</modular.jdk.props>
                 <!-- There are lots of issues with checkstyle runtime on JDK9, it somewhat works but really slows down build, disabling it for now-->
@@ -6306,7 +6338,3 @@
         </profile>
     </profiles>
 </project>
-<!--
-Modified by POM Manipulation Extension for Maven 2.3.1 ( SHA: f64d03ba ) 
--->
-
