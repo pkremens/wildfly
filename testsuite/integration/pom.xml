@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>wildfly-testsuite</artifactId>
-        <version>7.1.0.GA-redhat-SNAPSHOT</version>
+        <version>7.1.0.GA-redhat-2</version>
     </parent>
 
     <artifactId>wildfly-ts-integ</artifactId>
@@ -24,14 +22,12 @@
         <jbossas.ts.dir>${jbossas.ts.integ.dir}/..</jbossas.ts.dir>
         <!-- This project's root dir. -->
         <jbossas.project.dir>${jbossas.ts.dir}/..</jbossas.project.dir>
-        <jvm.args.dirs>
-            -Djbossas.ts.submodule.dir=${jbossas.ts.submodule.dir}
+        <jvm.args.dirs>-Djbossas.ts.submodule.dir=${jbossas.ts.submodule.dir}
             -Djbossas.ts.integ.dir=${jbossas.ts.integ.dir}
             -Djbossas.ts.dir=${jbossas.ts.dir}
             -Djbossas.project.dir=${jbossas.project.dir}
             -Djboss.dist=${jboss.dist}
-            -Djava.io.tmpdir=${basedir}/target
-        </jvm.args.dirs>
+            -Djava.io.tmpdir=${basedir}/target</jvm.args.dirs>
 
         <!-- Used to provide an absolute location for the distribution under test. -->
         <jboss.dist>${jbossas.project.dir}/${wildfly.build.output.dir}</jboss.dist>
@@ -394,7 +390,7 @@
         <dependency>
              <groupId>org.jboss.eap</groupId>
             <artifactId>wildfly-webservices-tests-integration</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0.GA-redhat-2</version>
             <scope>test</scope>
         </dependency>
         <dependency>

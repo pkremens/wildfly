@@ -20,16 +20,13 @@
   ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
-        <version>7.1.0.GA-redhat-SNAPSHOT</version>
+        <version>7.1.0.GA-redhat-2</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -38,12 +35,10 @@
 
     <name>WildFly: EJB and JMS client combined jar</name>
 
-    <description>
-        This artifact provides a single jar that contains all classes required to use remote EJB and JMS, including
+    <description>This artifact provides a single jar that contains all classes required to use remote EJB and JMS, including
         all dependencies. It is intended for use by those not using maven, maven users should just import the EJB and
         JMS BOM's instead (shaded JAR's cause lots of problems with maven, as it is very easy to inadvertently end up
-        with different versions on classes on the class path).
-    </description>
+        with different versions on classes on the class path).</description>
 
     <dependencies>
 
@@ -80,8 +75,8 @@
                         <configuration>
                             <createSourcesJar>true</createSourcesJar>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"></transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"></transformer>
                             </transformers>
                         </configuration>
                     </execution>
