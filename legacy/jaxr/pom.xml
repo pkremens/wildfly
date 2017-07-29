@@ -27,7 +27,7 @@
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
         <relativePath>../../pom.xml</relativePath>
-        <version>7.1.0.GA-redhat-SNAPSHOT</version>
+        <version>7.1.0.GA-redhat-4</version>
     </parent>
 
     <artifactId>wildfly-jaxr</artifactId>
