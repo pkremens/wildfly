@@ -68,6 +68,7 @@ import org.jboss.wsf.spi.deployment.Endpoint;
 import org.jboss.wsf.spi.deployment.EndpointType;
 import org.jboss.wsf.spi.management.EndpointMetricsFactory;
 import org.jboss.wsf.spi.security.EJBMethodSecurityAttributeProvider;
+import org.wildfly.extension.undertow.deployment.UndertowAttachments;
 
 /**
  * WS endpoint service; this is meant for setting the lazy deployment time info into the Endpoint (stuff coming from
@@ -79,6 +80,7 @@ import org.jboss.wsf.spi.security.EJBMethodSecurityAttributeProvider;
  */
 public final class EndpointService implements Service<Endpoint> {
 
+    static final String SECURITY_DOMAIN_NAME = "securityDomainName";
     private final Endpoint endpoint;
     private final ServiceName name;
     private final InjectedValue<SecurityDomainContext> securityDomainContextValue = new InjectedValue<SecurityDomainContext>();
@@ -215,8 +217,10 @@ public final class EndpointService implements Service<Endpoint> {
         final ServiceBuilder<Endpoint> builder = serviceTarget.addService(serviceName, service);
         final ServiceName alias = WSServices.ENDPOINT_SERVICE.append(context.toString()).append(propEndpoint);
         builder.addAliases(alias);
+        final String domainName = (String)endpoint.getProperty(SECURITY_DOMAIN_NAME);
+        endpoint.setProperty(SECURITY_DOMAIN_NAME, domainName);
         builder.addDependency(DependencyType.REQUIRED,
-                SecurityDomainService.SERVICE_NAME.append(getDeploymentSecurityDomainName(endpoint)),
+                SecurityDomainService.SERVICE_NAME.append(getDeploymentSecurityDomainName(endpoint, unit)),
                 SecurityDomainContext.class, service.getSecurityDomainContextInjector());
         builder.addDependency(DependencyType.REQUIRED, WSServices.CONFIG_SERVICE, AbstractServerConfig.class,
                 service.getAbstractServerConfigInjector());
@@ -239,11 +243,19 @@ public final class EndpointService implements Service<Endpoint> {
         }
     }
 
-    private static String getDeploymentSecurityDomainName(final Endpoint ep) {
+    private static String getDeploymentSecurityDomainName(final Endpoint ep, final DeploymentUnit unit) {
         JBossWebMetaData metadata = ep.getService().getDeployment().getAttachment(JBossWebMetaData.class);
         String metaDataSecurityDomain = metadata != null ? metadata.getSecurityDomain() : null;
-        return metaDataSecurityDomain == null ? SecurityConstants.DEFAULT_APPLICATION_POLICY : SecurityUtil
-                .unprefixSecurityDomain(metaDataSecurityDomain.trim());
+        if (metaDataSecurityDomain == null) {
+            if (unit.hasAttachment(UndertowAttachments.DEFAULT_SECURITY_DOMAIN)) {
+                metaDataSecurityDomain = unit.getAttachment(UndertowAttachments.DEFAULT_SECURITY_DOMAIN);
+            } else {
+                metaDataSecurityDomain = SecurityConstants.DEFAULT_APPLICATION_POLICY;
+            }
+        } else {
+            metaDataSecurityDomain = SecurityUtil.unprefixSecurityDomain(metaDataSecurityDomain.trim());
+        }
+        return metaDataSecurityDomain;
     }
 
     private static ServiceName getEJBViewMethodSecurityAttributesServiceName(final DeploymentUnit unit, final Endpoint endpoint) {

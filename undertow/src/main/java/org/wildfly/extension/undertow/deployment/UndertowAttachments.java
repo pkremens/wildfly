@@ -59,6 +59,8 @@ public final class UndertowAttachments {
 
     public static final AttachmentKey<ServletContainerService> SERVLET_CONTAINER_SERVICE = AttachmentKey.create(ServletContainerService.class);
 
+    public static final AttachmentKey<String> DEFAULT_SECURITY_DOMAIN = AttachmentKey.create(String.class);
+
     private UndertowAttachments() {
     }
 
