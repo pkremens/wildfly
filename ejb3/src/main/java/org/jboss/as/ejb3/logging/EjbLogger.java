@@ -3114,4 +3114,8 @@ public interface EjbLogger extends BasicLogger {
             "As a result the 'default-sfsb-cache' attribute has been set to '%s' and the " +
             "'default-sfsb-passivation-disabled-cache' attribute has been set to '%s'.")
     void remappingCacheAttributes(String address, ModelNode defClustered, ModelNode passivationDisabled);
+
+    @LogMessage(level = WARN)
+    @Message(id = 495, value = "Ignoring the persisted start or end date for scheduled expression of timer ID:%s as it is not valid : %s.")
+    void scheduleExpressionDateFromTimerPersistenceInvalid(String timerId, String parserMessage);
 }
