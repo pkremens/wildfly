@@ -31,7 +31,7 @@
 
     <groupId>org.jboss.eap</groupId>
     <artifactId>jboss-eap-parent</artifactId>
-    <version>7.1.0.GA-redhat-5</version>
+    <version>7.1.0.GA-redhat-6</version>
 
     <name>WildFly: Parent Aggregator</name>
     <description>WildFly: Parent Aggregator</description>
@@ -855,46 +855,46 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-appclient</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-batch</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-batch-jberet</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-build</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-bean-validation</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-feature-pack</artifactId>
                 <type>pom</type>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-feature-pack</artifactId>
                 <type>zip</type>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
@@ -906,164 +906,164 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-api</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-common</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-ee-infinispan</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-ee-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-ejb-infinispan</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-ejb-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-infinispan-extension</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-infinispan-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-jgroups-api</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-jgroups-extension</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-jgroups-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-marshalling-api</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-marshalling-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-marshalling-infinispan</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-marshalling-jboss</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-server</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-service</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-singleton-api</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-singleton-extension</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-web-api</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-web-infinispan</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-web-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-clustering-web-undertow</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-cmp</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-configadmin</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-connector</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-dist</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-client-all</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <exclusion>
                         <groupId>sun.jdk</groupId>
@@ -1075,13 +1075,13 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-ee</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-ejb3</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <!-- TODO remove this exclusion once this supports JTA 1.2 -->
                     <!-- superseded by org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec -->
@@ -1099,87 +1099,87 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-ejb-client-bom</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-iiop-openjdk</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jacorb</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jaxr</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jaxrs</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jdr</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jms-client-bom</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jsr77</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-mail</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-messaging</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-messaging-activemq</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-mod_cluster-extension</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-mod_cluster-undertow</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-naming</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
@@ -1197,7 +1197,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-picketlink</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.picketlink</groupId>
@@ -1213,49 +1213,49 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-pojo</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-security-api</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-security</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-sar</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-system-jmx</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-transactions</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-undertow</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-web</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.jboss.logging</groupId>
@@ -1267,13 +1267,13 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-web-common</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-servlet-dist</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <type>pom</type>
             </dependency>
 
@@ -1281,80 +1281,80 @@
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-servlet-feature-pack</artifactId>
                 <type>pom</type>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-servlet-feature-pack</artifactId>
                 <type>zip</type>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-webservices-server-integration</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-common</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-ejb</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-jpa</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-bean-validation</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-webservices</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-weld-transactions</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-xts</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-rts</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
@@ -1372,7 +1372,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-testsuite-shared</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <scope>test</scope>
             </dependency>
             <!-- External Dependencies -->
@@ -4524,13 +4524,13 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jpa</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-spi</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <!-- TODO remove this exclusion once this supports JTA 1.2 -->
                     <!-- superseded by org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec -->
@@ -4544,7 +4544,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-hibernate5</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.hibernate</groupId>
@@ -4568,7 +4568,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-hibernate4-3</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.hibernate</groupId>
@@ -4588,7 +4588,7 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-hibernate4-1</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.hibernate</groupId>
@@ -4608,25 +4608,25 @@
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-eclipselink</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>jipijapa-openjpa</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jsf</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.eap</groupId>
                 <artifactId>wildfly-jsf-injection</artifactId>
-                <version>7.1.0.GA-redhat-5</version>
+                <version>7.1.0.GA-redhat-6</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.apache.myfaces.core</groupId>
@@ -6503,6 +6503,9 @@
         </profile>
     </profiles>
 </project>
+<!--
+Modified by POM Manipulation Extension for Maven 2.3.1 ( SHA: f64d03ba ) 
+-->
 <!--
 Modified by POM Manipulation Extension for Maven 2.3.1 ( SHA: f64d03ba ) 
 -->

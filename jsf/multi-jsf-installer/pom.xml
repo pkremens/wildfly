@@ -26,7 +26,7 @@
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>wildfly-jsf-parent</artifactId>
-        <version>7.1.0.GA-redhat-5</version>
+        <version>7.1.0.GA-redhat-6</version>
     </parent>
 
     <artifactId>wildfly-jsf-installer</artifactId>
