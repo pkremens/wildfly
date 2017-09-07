@@ -25,6 +25,7 @@ package org.wildfly.extension.clustering.singleton.deployment;
 import org.jboss.as.server.deployment.DeploymentUnitPhaseBuilder;
 import org.jboss.msc.service.Service;
 import org.jboss.msc.service.ServiceBuilder;
+import org.jboss.msc.service.ServiceBuilder.DependencyType;
 import org.jboss.msc.service.ServiceController;
 import org.jboss.msc.service.ServiceName;
 import org.jboss.msc.service.ServiceTarget;
@@ -44,6 +45,10 @@ public class SingletonDeploymentUnitPhaseBuilder implements DeploymentUnitPhaseB
 
     @Override
     public <T> ServiceBuilder<T> build(ServiceTarget target, ServiceName name, Service<T> service) {
-        return this.policy.createSingletonServiceBuilder(name, service).build(target).setInitialMode(ServiceController.Mode.ACTIVE);
+        return this.policy.createSingletonServiceBuilder(name, service).build(target)
+                // In the absence of CapabilityServiceSupport.hasCapability(...), we need to rely on optional dependencies
+                .addDependency(DependencyType.OPTIONAL, ServiceName.JBOSS.append("ejb3", "connector"))
+                .addDependency(DependencyType.OPTIONAL, ServiceName.JBOSS.append("ejb", "remoting", "connector", "client-mappings", "installer"))
+                .setInitialMode(ServiceController.Mode.ACTIVE);
     }
 }
