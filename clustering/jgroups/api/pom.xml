@@ -29,7 +29,7 @@
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>wildfly-clustering-jgroups</artifactId>
-        <version>7.0.8.GA-redhat-SNAPSHOT</version>
+        <version>7.0.9.GA-redhat-SNAPSHOT</version>
     </parent>
 
     <artifactId>wildfly-clustering-jgroups-api</artifactId>

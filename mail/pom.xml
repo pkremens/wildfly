@@ -26,7 +26,7 @@
     <parent>
         <artifactId>jboss-eap-parent</artifactId>
         <groupId>org.jboss.eap</groupId>
-        <version>7.0.8.GA-redhat-SNAPSHOT</version>
+        <version>7.0.9.GA-redhat-SNAPSHOT</version>
     </parent>
 
     <artifactId>wildfly-mail</artifactId>
