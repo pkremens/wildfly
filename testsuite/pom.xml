@@ -20,8 +20,6 @@
   ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
   ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
   -->
-
-
 <!--
     1. The testsuite module has a small number of submodules:
 
@@ -46,16 +44,13 @@
        in the pom for the module which contains the tests. See the submodule poms for more details.
 
 -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
-        <version>7.1.0.GA-redhat-SNAPSHOT</version>
+        <version>7.1.0.GA-redhat-8</version>
     </parent>
 
     <artifactId>wildfly-testsuite</artifactId>
@@ -112,8 +107,7 @@
             -Djboss.bind.address.unsecure=${node0}
             -Djboss.bind.address.private=${node0}
             -Djboss.bind.address.management=${node0}
-            -Djboss.default.multicast.address=${mcast}
-            </jvm.args.ip.server>
+            -Djboss.default.multicast.address=${mcast}</jvm.args.ip.server>
         <jvm.args.ip.client>${jvm.args.ip}</jvm.args.ip.client>
 
         <!-- Server arguments. Cannot have a null server argument in ARQ, set a dummy system property -->
@@ -148,7 +142,7 @@
         <surefire.memory.args>-Xmx512m -XX:MetaspaceSize=128m</surefire.memory.args>
         <surefire.jpda.args></surefire.jpda.args>
         <as.debug.port>8787</as.debug.port>
-        <modular.jdk.testsuite.args />
+        <modular.jdk.testsuite.args></modular.jdk.testsuite.args>
         <surefire.system.args>${modular.jdk.testsuite.args} -Dorg.jboss.ejb.client.wildfly-testsuite-hack=true ${surefire.memory.args} ${surefire.jpda.args} -Djboss.dist=${jboss.dist} ${surefire.jacoco.args}</surefire.system.args>
         <surefire.forked.process.timeout>1500</surefire.forked.process.timeout>
 
@@ -596,7 +590,7 @@
                                 <configuration>
                                     <transformationSets>
                                         <transformationSet>
-                                            <dir      >${basedir}/target/jdbcDrivers</dir>
+                                            <dir>${basedir}/target/jdbcDrivers</dir>
                                             <outputDir>${basedir}/target/jdbcDrivers</outputDir>
                                             <stylesheet>${xslt.scripts.dir}/changeModule.xsl</stylesheet>
                                             <includes>
@@ -657,12 +651,6 @@
                     <version>${ds.jdbc.driver.version}</version>
                 </dependency>
             </dependencies>
-            <repositories>
-                <repository>
-                    <id>JBoss QA repository</id>
-                    <url>http://nexus.qa.jboss.com:8081/nexus/content/repositories/thirdparty</url>
-                </repository>
-            </repositories>
             <build>
                 <plugins>
                     <plugin>
@@ -704,7 +692,7 @@
                                 <configuration>
                                     <transformationSets>
                                         <transformationSet>
-                                            <dir      >${basedir}/target/jbossas/standalone/configuration</dir>
+                                            <dir>${basedir}/target/jbossas/standalone/configuration</dir>
                                             <outputDir>${basedir}/target/jbossas/standalone/configuration</outputDir>
                                             <stylesheet>${xslt.scripts.dir}/changeDatabase.xsl</stylesheet>
                                             <includes>
@@ -887,7 +875,7 @@
                                             <property name="reports.dest.dir" value="${basedir}/target/reports"/>
                                             <property name="reports.src.mask" value="**/target/surefire-reports/TEST-*.xml"/>
                                             -->
-                                            <target name="reports"/>
+                                            <target name="reports"></target>
                                         </ant>
                                     </target>
                                 </configuration>
@@ -903,7 +891,7 @@
                                 <inherited>false</inherited>
                                 <configuration>
                                     <target>
-                                        <loadfile property="help.banner" srcFile="${basedir}/tools/help-banner.txt"/>
+                                        <loadfile property="help.banner" srcFile="${basedir}/tools/help-banner.txt"></loadfile>
                                         <echo>${help.banner}</echo>
                                     </target>
                                 </configuration>
@@ -1005,8 +993,7 @@
                 <modular.jdk.testsuite.args>${modular.jdk.args}
                     --add-exports=java.base/sun.security.validator=ALL-UNNAMED
                     --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED
-                    --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED
-                </modular.jdk.testsuite.args>
+                    --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED</modular.jdk.testsuite.args>
             </properties>
         </profile>
         <profile>
