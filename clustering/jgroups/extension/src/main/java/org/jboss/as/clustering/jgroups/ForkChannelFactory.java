@@ -107,8 +107,8 @@ public class ForkChannelFactory implements ChannelFactory {
         }
 
         @Override
-        public Map<String, String> getDefaultProperties(String protocol) {
-            return this.parentStack.getDefaultProperties(protocol);
+        public Map<String, String> getDefaultProperties(Class<? extends Protocol> protocolClass) {
+            return this.parentStack.getDefaultProperties(protocolClass);
         }
 
         @Override
