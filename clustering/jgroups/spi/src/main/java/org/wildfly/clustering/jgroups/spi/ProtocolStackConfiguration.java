@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.jboss.modules.ModuleLoader;
+import org.jgroups.stack.Protocol;
 
 /**
  * Defines the configuration of a JGroups protocol stack.
@@ -34,7 +35,7 @@ public interface ProtocolStackConfiguration {
 
     String getName();
 
-    Map<String, String> getDefaultProperties(String protocol);
+    Map<String, String> getDefaultProperties(Class<? extends Protocol> protocol);
 
     TransportConfiguration getTransport();
 

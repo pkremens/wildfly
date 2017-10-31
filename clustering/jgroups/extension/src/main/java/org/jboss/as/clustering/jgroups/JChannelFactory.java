@@ -290,18 +290,20 @@ public class JChannelFactory implements ChannelFactory, ProtocolStackConfigurato
     }
 
     private static org.jgroups.conf.ProtocolConfiguration createProtocol(ProtocolStackConfiguration stack, ProtocolConfiguration protocol) {
-        String protocolName = protocol.getName();
+        String protocolClassName = protocol.getProtocolClassName();
         ModuleIdentifier module = protocol.getModule();
-        final Map<String, String> properties = new HashMap<>(stack.getDefaultProperties(protocolName));
-        properties.putAll(protocol.getProperties());
         try {
-            return new org.jgroups.conf.ProtocolConfiguration(protocol.getProtocolClassName(), properties, stack.getModuleLoader().loadModule(module).getClassLoader()) {
+            ClassLoader loader = stack.getModuleLoader().loadModule(module).getClassLoader();
+            Class<? extends Protocol> protocolClass = loader.loadClass(protocolClassName).asSubclass(Protocol.class);
+            final Map<String, String> properties = new HashMap<>(stack.getDefaultProperties(protocolClass));
+            properties.putAll(protocol.getProperties());
+            return new org.jgroups.conf.ProtocolConfiguration(protocolClassName, properties, loader) {
                 @Override
                 public Map<String, String> getOriginalProperties() {
                     return properties;
                 }
             };
-        } catch (ModuleLoadException e) {
+        } catch (ModuleLoadException | ClassNotFoundException e) {
             throw new IllegalArgumentException(e);
         }
     }

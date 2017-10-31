@@ -46,6 +46,7 @@ import org.jboss.msc.service.ServiceTarget;
 import org.jboss.msc.service.ValueService;
 import org.jboss.msc.value.InjectedValue;
 import org.jboss.msc.value.Value;
+import org.jgroups.stack.Protocol;
 import org.wildfly.clustering.jgroups.spi.ChannelFactory;
 import org.wildfly.clustering.jgroups.spi.ProtocolConfiguration;
 import org.wildfly.clustering.jgroups.spi.ProtocolStackConfiguration;
@@ -132,8 +133,8 @@ public class JChannelFactoryBuilder implements ResourceServiceBuilder<ChannelFac
     }
 
     @Override
-    public Map<String, String> getDefaultProperties(String protocol) {
-        return this.defaults.getValue().getProperties(protocol);
+    public Map<String, String> getDefaultProperties(Class<? extends Protocol> protocolClass) {
+        return this.defaults.getValue().getProperties(protocolClass);
     }
 
     @Override
