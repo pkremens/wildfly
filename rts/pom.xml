@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>jboss-eap-parent</artifactId>
-        <version>7.1.0.GA-redhat-9</version>
+        <version>7.1.0.GA-redhat-10</version>
     </parent>
 
     <artifactId>wildfly-rts</artifactId>
