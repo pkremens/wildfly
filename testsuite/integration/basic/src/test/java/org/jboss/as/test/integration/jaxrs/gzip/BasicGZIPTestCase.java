@@ -32,6 +32,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.GZIPInputStream;
 
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.junit.Assert;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -66,10 +67,17 @@ public class BasicGZIPTestCase {
         return ShrinkWrap
                 .create(WebArchive.class, "gzip.war")
                 .addClasses(BasicGZIPTestCase.class, GZIPResource.class, JaxbModel.class)
+                .addAsManifestResource( getProviders(), "services/javax.ws.rs.ext.Providers")
                 .setWebXML(
                         WebXml.get("<servlet-mapping>\n"
                                 + "        <servlet-name>javax.ws.rs.core.Application</servlet-name>\n"
                                 + "        <url-pattern>/myjaxrs/*</url-pattern>\n" + "</servlet-mapping>\n"));
+    }
+
+    private static StringAsset getProviders() {
+        return new StringAsset("org.jboss.resteasy.plugins.interceptors.encoding.AcceptEncodingGZIPFilter\n" +
+            "org.jboss.resteasy.plugins.interceptors.encoding.GZIPDecodingInterceptor\n" +
+            "org.jboss.resteasy.plugins.interceptors.encoding.GZIPEncodingInterceptor");
     }
 
     private String read(final InputStream in) throws IOException {
