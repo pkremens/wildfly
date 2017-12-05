@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jboss.eap</groupId>
         <artifactId>wildfly-ts-integ</artifactId>
-        <version>7.0.9.GA-redhat-SNAPSHOT</version>
+        <version>7.0.9.GA-redhat-3</version>
     </parent>
 
     <!-- ********************************************************************************** -->
@@ -31,9 +30,6 @@
                     <name>!ts.noIIOP</name>
                 </property>
             </activation>
-
-            <properties>
-            </properties>
 
             <!-- Server configuration executions. -->
             <build>
@@ -72,15 +68,12 @@
                                 <configuration>
                                     <target>
                                         <!-- Configure IIOP server and client. -->
-                                        <ant
-                                            antfile="${jbossas.ts.integ.dir}/src/test/scripts/iiop-build.xml">
-                                            <property name="node0"
-                                                value="${node0}" /> <!-- inheritAll="true" doesn't work. -->
-                                            <property name="node1"
-                                                value="${node1}" />
-                                            <property name="keystore.file" value="${basedir}/target/iiop-test.keystore"/>
-                                            <property name="keystore.password" value="password"/>
-                                            <target name="build-iiop" />
+                                        <ant antfile="${jbossas.ts.integ.dir}/src/test/scripts/iiop-build.xml">
+                                            <property name="node0" value="${node0}"></property> <!-- inheritAll="true" doesn't work. -->
+                                            <property name="node1" value="${node1}"></property>
+                                            <property name="keystore.file" value="${basedir}/target/iiop-test.keystore"></property>
+                                            <property name="keystore.password" value="password"></property>
+                                            <target name="build-iiop"></target>
                                         </ant>
                                     </target>
                                 </configuration>
@@ -116,15 +109,13 @@
                                     </includes>
 
                                     <!-- Parameters to test cases. -->
-                                    <systemPropertyVariables
-                                        combine.children="append">
+                                    <systemPropertyVariables combine.children="append">
                                         <arquillian.launch>iiop</arquillian.launch>
                                         <jboss.server.config.file.name>standalone-full.xml</jboss.server.config.file.name>
                                         <!-- EJB client library hack, see WFLY-4973-->
                                         <org.jboss.ejb.client.wildfly-testsuite-hack>true</org.jboss.ejb.client.wildfly-testsuite-hack>
                                     </systemPropertyVariables>
-                                    <argLine>
-                                        -Djava.endorsed.dirs=${project.build.directory}/endorsed
+                                    <argLine>-Djava.endorsed.dirs=${project.build.directory}/endorsed
                                         -Dcom.sun.CORBA.ORBUseDynamicStub=true
                                         -Dcom.arjuna.ats.arjuna.common.propertiesFile=jbossts-properties.xml</argLine>
                                 </configuration>
@@ -135,7 +126,7 @@
                                 <id>tests-iiop-ssl.surefire</id>
                                 <phase>test</phase>
                                 <goals><goal>test</goal></goals>
-                                <configuration>-->
+                                <configuration>--&gt;
                                     <!-- Tests to execute. -->
                                     <includes>
                                         <include>org/jboss/as/test/iiopssl/**/*TestCase.java</include>
@@ -147,8 +138,7 @@
                                         <jboss.server.config.file.name>standalone-full.xml</jboss.server.config.file.name>
                                         <org.jboss.ejb.client.wildfly-testsuite-hack>true</org.jboss.ejb.client.wildfly-testsuite-hack>
                                     </systemPropertyVariables>
-                                    <argLine>
-                                        -Djava.endorsed.dirs=${project.build.directory}/endorsed
+                                    <argLine>-Djava.endorsed.dirs=${project.build.directory}/endorsed
                                         -Dcom.sun.CORBA.ORBUseDynamicStub=true
                                         -Dcom.arjuna.ats.arjuna.common.propertiesFile=jbossts-properties.xml</argLine>
                                 </configuration>
