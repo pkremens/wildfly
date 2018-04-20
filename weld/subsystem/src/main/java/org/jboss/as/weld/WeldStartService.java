@@ -95,6 +95,8 @@ public class WeldStartService implements Service<WeldStartService> {
             bootstrap.getValue().getBootstrap().startInitialization();
             bootstrap.getValue().getBootstrap().deployBeans();
             bootstrap.getValue().getBootstrap().validateBeans();
+        } catch (Throwable t) {
+            t.printStackTrace();
         } finally {
 
             for (SetupAction action : setupActions) {
