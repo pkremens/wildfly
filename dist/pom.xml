@@ -59,6 +59,12 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.jboss.migration</groupId>
+            <artifactId>jboss-server-migration-eap7.2-galleon-pack</artifactId>
+            <version>${version.org.jboss.migration}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
@@ -101,6 +107,25 @@
                                 </resolve-local>
                             </resolve-locals>
                             <feature-packs>
+                                <feature-pack>
+                                    <groupId>org.jboss.migration</groupId>
+                                    <artifactId>jboss-server-migration-eap7.2-galleon-pack</artifactId>
+                                    <version>${version.org.jboss.migration}</version>
+                                </feature-pack>
+                                <!--
+                                    we need the wildfly-core-galleon-pack here as version discriminator for the wildfly-core
+                                    dependency brought in by jboss-server-migration-eap7.2-galleon-pack and by wildfly-galleon-pack
+                                -->
+                                <feature-pack>
+                                    <groupId>org.wildfly.core</groupId>
+                                    <artifactId>wildfly-core-galleon-pack</artifactId>
+                                    <version>${version.org.wildfly.core}</version>
+                                    <inheritPackages>false</inheritPackages>
+                                    <inheritConfigs>false</inheritConfigs>
+                                    <excluded-packages>
+                                        <name>product.conf</name>
+                                    </excluded-packages>
+                                </feature-pack>
                                 <feature-pack>
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>wildfly-galleon-pack</artifactId>
