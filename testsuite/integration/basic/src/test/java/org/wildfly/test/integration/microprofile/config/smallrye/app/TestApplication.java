@@ -22,7 +22,9 @@
 
 package org.wildfly.test.integration.microprofile.config.smallrye.app;
 
-import java.util.Optional;
+import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.wildfly.test.integration.microprofile.config.smallrye.SubsystemConfigSourceTask;
 
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
@@ -31,10 +33,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
-
-import org.eclipse.microprofile.config.Config;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.wildfly.test.integration.microprofile.config.smallrye.SubsystemConfigSourceTask;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author <a href="http://jmesnil.net/">Jeff Mesnil</a> (c) 2017 Red Hat inc.
@@ -61,6 +62,41 @@ public class TestApplication extends Application {
         String prop3;
 
         @Inject
+        @ConfigProperty(name = "myPets")
+        String myConfigProperty;
+
+        @Inject
+        @ConfigProperty(name = "myPets", defaultValue = "dog,cat,dog\\,cat")
+//        Set<String> myPets;
+                String[] myPets;
+//        List<String> myPets;
+
+//        //where its value is a comma separated value ( myPets=dog,cat,dog\\,cat)
+        @Inject
+        @ConfigProperty(name = "myPets", defaultValue = "frog,cat,dog\\,cat")
+        private String[] myArrayPets;
+        @Inject
+        @ConfigProperty(name = "myPets", defaultValue = "frog,cat,dog\\,cat")
+        private List<String> myListPets;
+        @Inject
+        @ConfigProperty(name = "myPets", defaultValue = "frog,cat,dog\\,cat")
+        private Set<String> mySetPets;
+
+//        ./standalone.sh -DmyPets=dog,cat,mouse\\,mice
+
+        //where its value is a comma separated value ( myPets=dog,cat,dog\\,cat)
+//        @Inject
+//        @ConfigProperty(name = "myPets")
+//        private String[] myArrayPets;
+//        @Inject
+//        @ConfigProperty(name = "myPets")
+//        private List<String> myListPets;
+//        @Inject
+//        @ConfigProperty(name = "myPets")
+//        private Set<String> mySetPets;
+
+
+        @Inject
         @ConfigProperty(name = "optional.injected.prop.that.is.not.configured")
         Optional<String> optionalProp;
 
@@ -74,6 +110,13 @@ public class TestApplication extends Application {
             text.append("my.other.prop = " + prop2 + "\n");
             text.append("optional.injected.prop.that.is.not.configured = " + optionalProp + "\n");
             text.append(SubsystemConfigSourceTask.MY_PROP_FROM_SUBSYSTEM_PROP_NAME + " = " + prop3 + "\n");
+            text.append(System.lineSeparator());
+            text.append("myPets test").append(System.lineSeparator());
+            text.append("myArrayPets.length: " + myArrayPets.length).append(System.lineSeparator());
+            text.append("myListPets.size(): " + myListPets.size()).append(System.lineSeparator());
+            text.append("mySetPets.size(): " + mySetPets.size()).append(System.lineSeparator());
+            text.append(System.lineSeparator());
+            text.append("MY PETS " + myConfigProperty).append(System.lineSeparator());
             return Response.ok(text).build();
         }
     }
