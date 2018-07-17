@@ -22,19 +22,22 @@
 
 package org.wildfly.test.integration.microprofile.config.smallrye;
 
+import org.jboss.as.arquillian.api.ServerSetupTask;
+import org.jboss.as.arquillian.container.ManagementClient;
+import org.jboss.as.controller.client.ModelControllerClient;
+import org.jboss.dmr.ModelNode;
+import org.wildfly.test.integration.microprofile.config.smallrye.app.MicroProfileConfigTestCase;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.ADD;
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.OP;
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.OP_ADDR;
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.PROPERTIES;
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.REMOVE;
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.SUBSYSTEM;
-
-import java.io.IOException;
-
-import org.jboss.as.arquillian.api.ServerSetupTask;
-import org.jboss.as.arquillian.container.ManagementClient;
-import org.jboss.as.controller.client.ModelControllerClient;
-import org.jboss.dmr.ModelNode;
 
 /**
  * Add a config-source with a property class in the microprofile-config-smallrye subsystem.
@@ -44,6 +47,7 @@ import org.jboss.dmr.ModelNode;
 public class SubsystemConfigSourceTask implements ServerSetupTask {
     public static final String MY_PROP_FROM_SUBSYSTEM_PROP_NAME = "my.prop.from.subsystem";
     public static final String MY_PROP_FROM_SUBSYSTEM_PROP_VALUE = "I'm configured in the subsystem";
+
 
     @Override
     public void setup(ManagementClient managementClient, String containerId) throws Exception {
@@ -56,14 +60,30 @@ public class SubsystemConfigSourceTask implements ServerSetupTask {
     }
 
 
-    private void addConfigSource(ModelControllerClient client, String propName, String propValue) throws IOException {
+    private void addConfigSource(ModelControllerClient client, String propName, String propValue) throws IOException, URISyntaxException {
         ModelNode op;
         op = new ModelNode();
         op.get(OP_ADDR).add(SUBSYSTEM, "microprofile-config-smallrye");
         op.get(OP_ADDR).add("config-source", "test");
         op.get(OP).set(ADD);
         op.get(PROPERTIES).add(propName, propValue);
-        ModelNode execute = client.execute(op);
+        client.execute(op);
+
+        // tohle bude chtit nejak zkonstantit, ale skrz WFWIP-57 a malo casu si s tim ted nemuzu vic hrat :/
+        // https://issues.jboss.org/browse/WFWIP-57 MalformedInputException is thrown in case config-source dir contains binaries
+        File propertiesDir = new File(MicroProfileConfigTestCase.class.getResource("who.is.the.best").toURI()).getParentFile();
+        op = new ModelNode();
+        op.get(OP_ADDR).add(SUBSYSTEM, "microprofile-config-smallrye");
+        op.get(OP_ADDR).add("config-source", "testDir");
+        op.get(OP).set(ADD);
+        op.get("dir").set(propertiesDir.getAbsolutePath());
+
+        // Execute
+        System.out.println("https://issues.jboss.org/browse/WFWIP-57 MalformedInputException is thrown in case " +
+                "config-source dir contains binaries");
+        System.out.println(op.toJSONString(false));
+        System.out.println(client.execute(op).toJSONString(false));
+
     }
 
     private void removeConfigSource(ModelControllerClient client) throws IOException {
@@ -71,6 +91,12 @@ public class SubsystemConfigSourceTask implements ServerSetupTask {
         op = new ModelNode();
         op.get(OP_ADDR).add(SUBSYSTEM, "microprofile-config-smallrye");
         op.get(OP_ADDR).add("config-source", "test");
+        op.get(OP).set(REMOVE);
+        client.execute(op);
+
+        op = new ModelNode();
+        op.get(OP_ADDR).add(SUBSYSTEM, "microprofile-config-smallrye");
+        op.get(OP_ADDR).add("config-source", "testDir");
         op.get(OP).set(REMOVE);
         client.execute(op);
     }
