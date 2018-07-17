@@ -22,12 +22,6 @@
 
 package org.wildfly.test.integration.microprofile.config.smallrye.app;
 
-import static org.wildfly.test.integration.microprofile.config.smallrye.AssertUtils.assertTextContainsProperty;
-import static org.wildfly.test.integration.microprofile.config.smallrye.HttpUtils.getContent;
-
-import java.net.URL;
-import java.util.Optional;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -46,6 +40,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.wildfly.test.integration.microprofile.config.smallrye.SubsystemConfigSourceTask;
 
+import java.net.URL;
+
+import static org.wildfly.test.integration.microprofile.config.smallrye.AssertUtils.assertTextContainsProperty;
+import static org.wildfly.test.integration.microprofile.config.smallrye.HttpUtils.getContent;
+
 /**
  * @author <a href="http://jmesnil.net/">Jeff Mesnil</a> (c) 2017 Red Hat inc.
  */
@@ -58,7 +57,8 @@ public class MicroProfileConfigTestCase {
     public static Archive<?> deploy() {
         WebArchive war = ShrinkWrap.create(WebArchive.class, "MicroProfileConfigTestCase.war")
                 .addClasses(TestApplication.class, TestApplication.Resource.class)
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource(MicroProfileConfigTestCase.class.getPackage(), "microprofile-config.properties", "microprofile-config.properties");
         return war;
     }
 
@@ -66,16 +66,13 @@ public class MicroProfileConfigTestCase {
     private URL url;
 
     @Test
-    public void testGetWithConfigProperties() throws Exception {
+    public void test() throws Exception {
         try (CloseableHttpClient client = HttpClientBuilder.create().build()) {
             HttpResponse response = client.execute(new HttpGet(url + "microprofile/test"));
             Assert.assertEquals(200, response.getStatusLine().getStatusCode());
             String text = getContent(response);
-            assertTextContainsProperty(text, "my.prop.never.defined", Optional.empty().toString());
-            assertTextContainsProperty(text, "my.prop", "BAR");
-            assertTextContainsProperty(text, "my.other.prop", false);
-            assertTextContainsProperty(text, "optional.injected.prop.that.is.not.configured", Optional.empty().toString());
-            assertTextContainsProperty(text, SubsystemConfigSourceTask.MY_PROP_FROM_SUBSYSTEM_PROP_NAME, SubsystemConfigSourceTask.MY_PROP_FROM_SUBSYSTEM_PROP_VALUE);
+            System.out.println(text);
+            assertTextContainsProperty(text, "who.is.the.best", "kremilek");
         }
     }
 }
