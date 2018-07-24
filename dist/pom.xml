@@ -117,14 +117,10 @@
                                     dependency brought in by jboss-server-migration-eap7.2-galleon-pack and by wildfly-galleon-pack
                                 -->
                                 <feature-pack>
-                                    <groupId>org.wildfly.core</groupId>
+				    <transitive>true</transitive>
+				    <groupId>org.wildfly.core</groupId>
                                     <artifactId>wildfly-core-galleon-pack</artifactId>
                                     <version>${version.org.wildfly.core}</version>
-                                    <inheritPackages>false</inheritPackages>
-                                    <inheritConfigs>false</inheritConfigs>
-                                    <excluded-packages>
-                                        <name>product.conf</name>
-                                    </excluded-packages>
                                 </feature-pack>
                                 <feature-pack>
                                     <groupId>${project.groupId}</groupId>
